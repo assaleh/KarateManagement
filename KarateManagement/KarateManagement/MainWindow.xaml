@@ -4,7 +4,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Label>
-            <Button Content="Testing" Width="75" />
+            Hello Wrodl
         </Label>
     </Grid>
 </Window>
