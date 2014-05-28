@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F1D9716-F190-47EF-9D84-A5AD42A6548F}</ProjectGuid>
+    <ProjectGuid>{BE0ABA50-8846-44D6-95A8-D8C1A996A191}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KarateManagement</RootNamespace>
