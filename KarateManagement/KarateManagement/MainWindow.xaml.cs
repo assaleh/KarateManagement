@@ -27,7 +27,7 @@ namespace KarateManagement
 
         private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
         }
     }
 }
