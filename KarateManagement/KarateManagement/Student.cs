@@ -9,7 +9,7 @@ namespace KarateManagement
     /// <summary>
     /// This class will be a representation of a student
     /// </summary>
-    class Student
+    public class Student
     {
         public string FirstName { get; set; }
 
@@ -29,8 +29,18 @@ namespace KarateManagement
 
         public Belt Belt { get; set; }
 
+        public Student()
+        {
 
+        }
 
+        public override string ToString()
+        {
+            String s = "{0} {1} {2} {3} {4} {5} {6} {7} {8}";
+            String s2 = String.Format(s, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber,
+                Email, Hours, Belt);
+            return s2;
+        }
 
     }
 }
