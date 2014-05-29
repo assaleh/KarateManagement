@@ -24,5 +24,10 @@ namespace KarateManagement
         {
             InitializeComponent();
         }
+
+        private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
