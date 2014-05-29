@@ -6,5 +6,6 @@
         <Label>
             Hello World
         </Label>
+        <Button Width="200" Height="100">Octopus</Button>
     </Grid>
 </Window>
