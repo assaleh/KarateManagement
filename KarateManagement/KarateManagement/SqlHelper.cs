@@ -19,16 +19,22 @@ namespace KarateManagement
         
         public static void Connect(string connectionString)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            
+            connection.Open();
 
-                m_connection = connection;
+            m_connection = connection;
 
-                Console.WriteLine("State: {0}", connection.State);
-                Console.WriteLine("ConnectionString: {0}",
-                    connection.ConnectionString);
-            }
+            Console.WriteLine("State: {0}", connection.State);
+            Console.WriteLine("ConnectionString: {0}",
+                connection.ConnectionString);
+
+            string createDB = String.Format(Resources.CreateDB, "KarateManagement");
+            MySqlCommand cmd = new MySqlCommand(createDB, connection);
+            cmd.ExecuteNonQuery();
+
+            Console.WriteLine("Created DB");
+            
         }
 
         public static void CreateDB()
@@ -37,13 +43,52 @@ namespace KarateManagement
             {
                 string createDB = String.Format(Resources.CreateDB, "KarateManagement"); 
                 MySqlCommand cmd = new MySqlCommand(createDB, m_connection);
+                cmd.ExecuteNonQuery();
+
+                Console.WriteLine("Created DB");
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                
-                throw;
+                //TODO; Maybe log the exception
+                throw e;
             }
+        }
+
+        public static void CreateTable()
+        {
+            try
+            {
+                string createTable = String.Format(Resources.CreateTable, "KarateManagement");
+                MySqlCommand cmd = new MySqlCommand(createTable, m_connection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                //TODO; Maybe log the exception
+                throw e;
+            }
+        }
+
+
+        public static void Create(Student student)
+        {
+            
+        }
+
+        public static void Read(int[] id)
+        {
+            
+        }
+
+        public static void Update(int id)
+        {
+            
+        }
+
+        public static void Delete(int id)
+        {
+            
         }
     }
 }

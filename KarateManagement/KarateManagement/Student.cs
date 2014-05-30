@@ -11,6 +11,9 @@ namespace KarateManagement
     /// </summary>
     public class Student
     {
+        //TODO change set to private. Set it in constructor
+        public int ID { get; set; } 
+        
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -36,8 +39,8 @@ namespace KarateManagement
 
         public override string ToString()
         {
-            String s = "{0} {1} {2} {3} {4} {5} {6} {7} {8}";
-            String s2 = String.Format(s, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber,
+            String s = "{0} {1} {2} {3} {4} {5} {6} {7} {8} {9}";
+            String s2 = String.Format(s,ID, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber,
                 Email, Hours, Belt);
             return s2;
         }
