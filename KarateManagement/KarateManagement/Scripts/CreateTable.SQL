@@ -1,6 +1,6 @@
 ﻿Create Table Student
 (
-	ID int AUTO_INCREMENT,
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	FirstName varchar(20),
 	LastName varchar(20),
 	DateOfBirth datetime,
@@ -10,5 +10,4 @@
 	Email varchar(40),
 	Hours int,
 	Belt int
-	PrimaryKey(ID)
 );
