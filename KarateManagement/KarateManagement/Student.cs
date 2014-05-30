@@ -32,6 +32,10 @@ namespace KarateManagement
 
         public Belt Belt { get; set; }
 
+        public decimal Balance { get; set; }
+
+        public DateTime MembershipEndDate { get; set; }
+
         public Student()
         {
 

@@ -1,5 +1,6 @@
 ﻿Create Table Student
 (
+	ID int AUTO_INCREMENT,
 	FirstName varchar(20),
 	LastName varchar(20),
 	DateOfBirth datetime,
@@ -9,4 +10,5 @@
 	Email varchar(40),
 	Hours int,
 	Belt int
+	PrimaryKey(ID)
 );

@@ -70,10 +70,18 @@ namespace KarateManagement
             }
         }
 
-
-        public static void Create(Student student)
+        /// <summary>
+        /// Creates a student in the database
+        /// </summary>
+        /// <param name="student">A student object to insert</param>
+        async public static Task CreateStudent(Student student)
         {
-            
+            string createTable = String.Format(Resources.CreateTable, "KarateManagement");
+            MySqlCommand cmd = new MySqlCommand(createTable, m_connection);
+            Task<int> t = cmd.ExecuteNonQueryAsync();
+
+            await t;
+
         }
 
         public static void Read(int[] id)
