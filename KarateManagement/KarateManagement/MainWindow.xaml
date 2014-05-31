@@ -5,8 +5,8 @@
     <Grid>
         <StackPanel>
             <Button Name ="ConnectButton" Click="ConnectButton_OnClick" Width="200" Height="100">Connect to Database</Button>
-            
-            <Button Name="CreateDButton" Click="CreateDButton_OnClick" Width="200" Height="100">Create DB</Button>
+        
+        
         </StackPanel>
         
     </Grid>

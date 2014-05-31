@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using KarateManagement.Properties;
 using MySql.Data.MySqlClient;
 
@@ -17,27 +18,57 @@ namespace KarateManagement
     {
         private static MySqlConnection m_connection;
         
-        public static void Connect(string connectionString)
+        async public static Task Connect(string connectionString)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
             
-            connection.Open();
+            await connection.OpenAsync();
 
             m_connection = connection;
 
             Console.WriteLine("State: {0}", connection.State);
             Console.WriteLine("ConnectionString: {0}",
                 connection.ConnectionString);
+            
+            try
+            {
+                string useDB = String.Format("Use karatemanagement;");
+                MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
+                await cmd.ExecuteNonQueryAsync();
 
-            string createDB = String.Format(Resources.CreateDB, "KarateManagement");
-            MySqlCommand cmd = new MySqlCommand(createDB, connection);
-            cmd.ExecuteNonQuery();
+                Console.WriteLine("Using KarateManagement");
+            }
+            catch (MySqlException e)
+            {
+                InitializeDB();
+            }
+        }
 
-            Console.WriteLine("Created DB");
+        /// <summary>
+        /// This method should be called to create all the tables and use the table
+        /// </summary>
+        async private static Task InitializeDB()
+        {
+            //Database doesnt exist. Must create database. Disconnect and try again
+            try
+            {
+                CreateDB();
+
+                string useDB = String.Format("Use karatemanagement;");
+                MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
+                await cmd.ExecuteNonQueryAsync();
+
+                CreateTable();
+            }
+            catch (Exception e)
+            {
+                //TODO Log, System.Exit? Cant connect to DB
+                throw;
+            }
             
         }
 
-        public static void CreateDB()
+        private static void CreateDB()
         {
             try
             {
@@ -55,7 +86,7 @@ namespace KarateManagement
             }
         }
 
-        public static void CreateTable()
+        private static void CreateTable()
         {
             try
             {

@@ -23,17 +23,27 @@ namespace KarateManagement
         public MainWindow()
         {
             InitializeComponent();
+
+            var t = new Task(() =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
+                }));
+            });
+            t.Start();
+
+
+
         }
 
         private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
         {
             //TODO Put ConnectionString in config file
             SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
+            
         }
 
-        private void CreateDButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            SqlHelper.CreateDB();
-        }
+       
     }
 }

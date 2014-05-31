@@ -102,7 +102,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Scripts\CreateDB.SQL" />
+    <Content Include="Scripts\CreateDB.SQL" />
     <Resource Include="Scripts\CreateTable.SQL" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
