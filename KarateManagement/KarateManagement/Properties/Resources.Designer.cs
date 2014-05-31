@@ -61,7 +61,7 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE DATABASE IF NOT EXISTS KarateManagement;.
+        ///   Looks up a localized string similar to CREATE DATABASE IF NOT EXISTS {0};.
         /// </summary>
         internal static string CreateDB {
             get {
@@ -70,8 +70,19 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO Student (FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt)
+        ///VALUES (&apos;{0}&apos;, &apos;{1}&apos;, &apos;{2}&apos;, &apos;{3}&apos;, &apos;{4}&apos;, &apos;{5}&apos;, &apos;{6}&apos;, &apos;{7}&apos;, &apos;{8}&apos;);.
+        /// </summary>
+        internal static string CreateStudent {
+            get {
+                return ResourceManager.GetString("CreateStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Table Student
         ///(
+        ///	ID INT PRIMARY KEY,
         ///	FirstName varchar(20),
         ///	LastName varchar(20),
         ///	DateOfBirth datetime,
@@ -80,7 +91,9 @@ namespace KarateManagement.Properties {
         ///	PhoneNumber varchar(10),
         ///	Email varchar(40),
         ///	Hours int,
-        ///	Belt int
+        ///	Belt int,
+        ///	Balance decimal,
+        ///	MembershipEndDate datetime
         ///);.
         /// </summary>
         internal static string CreateTable {
