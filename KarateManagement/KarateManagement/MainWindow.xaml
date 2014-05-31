@@ -4,7 +4,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <StackPanel>
-            <Button Name ="ConnectButton" Click="ConnectButton_OnClick" Width="200" Height="100">Connect to Database</Button>
+            <Button Name ="CreateStudentButton" Click="CreateStudentButton_OnClick" Width="200" Height="100">Create Student</Button>
         
         
         </StackPanel>

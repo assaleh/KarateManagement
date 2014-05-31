@@ -37,11 +37,16 @@ namespace KarateManagement
 
         }
 
-        private void ConnectButton_OnClick(object sender, RoutedEventArgs e)
+        private void CreateStudentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            //TODO Put ConnectionString in config file
-            SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
-            
+            Student s = new Student();
+            s.ID = SqlHelper.GetHighestID().Result + 1;
+
+            Task t = SqlHelper.CreateStudent(s);
+            t.Wait();
+
+            MessageBox.Show(String.Format("Highest ID is now {0}", s.ID));
+
         }
 
        

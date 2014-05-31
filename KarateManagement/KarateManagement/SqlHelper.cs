@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,8 @@ namespace KarateManagement
             Console.WriteLine("State: {0}", connection.State);
             Console.WriteLine("ConnectionString: {0}",
                 connection.ConnectionString);
-            
+
+            Task initializeDb = null;
             try
             {
                 string useDB = String.Format("Use karatemanagement;");
@@ -40,8 +42,14 @@ namespace KarateManagement
             }
             catch (MySqlException e)
             {
-                InitializeDB();
+                initializeDb = InitializeDB();
             }
+
+            if (initializeDb != null)
+            {
+                await initializeDb;
+            }
+            
         }
 
         /// <summary>
@@ -107,11 +115,26 @@ namespace KarateManagement
         /// <param name="student">A student object to insert</param>
         async public static Task CreateStudent(Student student)
         {
-            string createTable = String.Format(Resources.CreateTable, "KarateManagement");
-            MySqlCommand cmd = new MySqlCommand(createTable, m_connection);
+            string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirth,
+                student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
+            MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
             Task<int> t = cmd.ExecuteNonQueryAsync();
 
             await t;
+
+        }
+
+        /// <summary>
+        /// Gets the Highest Student ID in the database
+        /// </summary>
+        /// <returns></returns>
+        async public static Task<int> GetHighestID()
+        {
+            string query = "Select MAX(ID) as ID from Student";
+            MySqlCommand cmd = new MySqlCommand(query, m_connection);
+            Task<object> t = cmd.ExecuteScalarAsync();
+            int id = Convert.ToInt32(await t);
+            return id;
 
         }
 
