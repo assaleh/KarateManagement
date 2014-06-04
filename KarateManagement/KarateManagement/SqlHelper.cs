@@ -133,24 +133,38 @@ namespace KarateManagement
             string query = "Select MAX(ID) as ID from Student";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             Task<object> t = cmd.ExecuteScalarAsync();
-            int id = Convert.ToInt32(await t);
+            var obj = await t;
+            int id;
+            if (DBNull.Value.Equals(obj))
+            {
+                id = 0;
+            }
+            else
+            {
+                id = Convert.ToInt32(obj);
+            }
             return id;
 
         }
 
-        public static void Read(int[] id)
+        /// <summary>
+        /// Deletes a student from the database
+        /// </summary>
+        /// <param name="id">ID of the student to delete</param>
+        /// <returns>A task that can be awaited</returns>
+        async public static Task DeleteStudent(int id)
         {
+            String script = "Delete From student where ID = {0}";
+            String deleteStudent = String.Format(script, id);
+            MySqlCommand cmd = new MySqlCommand(deleteStudent, m_connection);
+            Task<int> t = cmd.ExecuteNonQueryAsync();
+
+            await t;
             
         }
 
-        public static void Update(int id)
-        {
-            
-        }
+        //async public static 
 
-        public static void Delete(int id)
-        {
-            
-        }
+        
     }
 }

@@ -24,6 +24,7 @@ namespace KarateManagement
         {
             InitializeComponent();
 
+            //Start a new task so that it runs on the Dispatcher thread instead of the UI thread
             var t = new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
@@ -32,6 +33,8 @@ namespace KarateManagement
                 }));
             });
             t.Start();
+
+            //TODO deal with the case of WAMP not being up and running
 
 
 
@@ -49,6 +52,11 @@ namespace KarateManagement
 
         }
 
-       
+
+        private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+            SqlHelper.DeleteStudent(SqlHelper.GetHighestID().Result);
+        }
     }
 }

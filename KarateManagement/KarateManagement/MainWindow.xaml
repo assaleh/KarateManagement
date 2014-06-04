@@ -5,7 +5,8 @@
     <Grid>
         <StackPanel>
             <Button Name ="CreateStudentButton" Click="CreateStudentButton_OnClick" Width="200" Height="100">Create Student</Button>
-        
+            
+            <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="200" Height="100">Delete Student</Button>
         
         </StackPanel>
         

@@ -1,2 +1,2 @@
 ﻿INSERT INTO Student (ID, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt, Balance, MembershipEndDate)
-VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}');
+VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}');
