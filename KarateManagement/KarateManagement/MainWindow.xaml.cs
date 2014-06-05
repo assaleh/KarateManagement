@@ -25,6 +25,7 @@ namespace KarateManagement
             InitializeComponent();
 
             //Start a new task so that it runs on the Dispatcher thread instead of the UI thread
+            //TODO thread trying to run on the UI thread
             var t = new Task(() =>
             {
                 Dispatcher.BeginInvoke(new Action(() =>
@@ -40,7 +41,13 @@ namespace KarateManagement
 
         }
 
-        private void CreateStudentButton_OnClick(object sender, RoutedEventArgs e)
+        private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+            SqlHelper.DeleteStudent(SqlHelper.GetHighestID().Result);
+        }
+
+        private void NewStudent_OnClick(object sender, RoutedEventArgs e)
         {
             Student s = new Student();
             s.ID = SqlHelper.GetHighestID().Result + 1;
@@ -49,14 +56,6 @@ namespace KarateManagement
             t.Wait();
 
             MessageBox.Show(String.Format("Highest ID is now {0}", s.ID));
-
-        }
-
-
-        private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-            SqlHelper.DeleteStudent(SqlHelper.GetHighestID().Result);
         }
     }
 }

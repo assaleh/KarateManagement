@@ -163,7 +163,12 @@ namespace KarateManagement
             
         }
 
-        //async public static 
+        /*
+         * async public static Task Update()
+         * INSERT into mytable (logins) 
+         * SELECT max(logins) + 1 
+         * FROM mytable
+         */
 
         
     }

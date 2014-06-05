@@ -2,11 +2,26 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <StackPanel>
-            <Button Name ="CreateStudentButton" Click="CreateStudentButton_OnClick" Width="200" Height="100">Create Student</Button>
+    
+    
+    <Grid Name="WindowGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        
+        <Menu DockPanel.Dock="Top" Height="23" VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="New Student" Click="NewStudent_OnClick"></MenuItem>
+            </MenuItem>
+
+        </Menu>
+
+        <StackPanel Grid.Row="1">
+           
             
-            <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="200" Height="100">Delete Student</Button>
+            <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="100" Height="50">Delete Student</Button>
         
         </StackPanel>
         
