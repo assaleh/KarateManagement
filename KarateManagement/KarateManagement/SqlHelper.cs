@@ -22,18 +22,23 @@ namespace KarateManagement
         async public static Task Connect(string connectionString)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
-            
-            await connection.OpenAsync();
-
-            m_connection = connection;
-
-            Console.WriteLine("State: {0}", connection.State);
-            Console.WriteLine("ConnectionString: {0}",
-                connection.ConnectionString);
 
             Task initializeDb = null;
+
+            bool connected = false;
             try
             {
+                await connection.OpenAsync();
+
+                m_connection = connection;
+                connected = true;
+
+                Console.WriteLine("State: {0}", connection.State);
+                Console.WriteLine("ConnectionString: {0}",
+                    connection.ConnectionString);
+
+                
+                
                 string useDB = String.Format("Use karatemanagement;");
                 MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
                 await cmd.ExecuteNonQueryAsync();
@@ -42,7 +47,10 @@ namespace KarateManagement
             }
             catch (MySqlException e)
             {
-                initializeDb = InitializeDB();
+                if(connected)
+                    initializeDb = InitializeDB();
+                else
+                    MessageBox.Show(e.Message);
             }
 
             if (initializeDb != null)
@@ -60,7 +68,7 @@ namespace KarateManagement
             //Database doesnt exist. Must create database. Disconnect and try again
             try
             {
-                CreateDB();
+                await CreateDB();
 
                 string useDB = String.Format("Use karatemanagement;");
                 MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
@@ -71,26 +79,26 @@ namespace KarateManagement
             catch (Exception e)
             {
                 //TODO Log, System.Exit? Cant connect to DB
-                throw;
+                
             }
             
         }
 
-        private static void CreateDB()
+        async private static Task CreateDB()
         {
             try
             {
                 string createDB = String.Format(Resources.CreateDB, "KarateManagement"); 
                 MySqlCommand cmd = new MySqlCommand(createDB, m_connection);
-                cmd.ExecuteNonQuery();
+                await cmd.ExecuteNonQueryAsync();
 
-                Console.WriteLine("Created DB");
+                Console.WriteLine("Createding DB");
 
             }
             catch (Exception e)
             {
                 //TODO; Maybe log the exception
-                throw e;
+                
             }
         }
 
@@ -105,7 +113,7 @@ namespace KarateManagement
             catch (Exception e)
             {
                 //TODO; Maybe log the exception
-                throw e;
+                
             }
         }
 
@@ -132,17 +140,28 @@ namespace KarateManagement
         {
             string query = "Select MAX(ID) as ID from Student";
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
-            Task<object> t = cmd.ExecuteScalarAsync();
-            var obj = await t;
-            int id;
-            if (DBNull.Value.Equals(obj))
+            int id = 0;
+            try
             {
-                id = 0;
+                Task<object> t = cmd.ExecuteScalarAsync();
+                var obj = await t;
+                
+                if (DBNull.Value.Equals(obj))
+                {
+                    id = 0;
+                }
+                else
+                {
+                    id = Convert.ToInt32(obj);
+                }
             }
-            else
+            catch (InvalidOperationException e)
             {
-                id = Convert.ToInt32(obj);
+                //TODO log exception somewhere
+                
             }
+            
+           
             return id;
 
         }

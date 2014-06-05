@@ -28,10 +28,9 @@ namespace KarateManagement
             //TODO thread trying to run on the UI thread
             var t = new Task(() =>
             {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
-                }));
+                
+                SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
+                
             });
             t.Start();
 
