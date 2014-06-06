@@ -13,13 +13,13 @@ namespace KarateManagement
     /// </summary>
     public class StudentItem : DependencyObject
     {
-        public static readonly DependencyProperty IdProperty = DependencyProperty.Register(
-            "Id", typeof (int), typeof (StudentItem), new PropertyMetadata(default(int)));
+        public static readonly DependencyProperty IDProperty = DependencyProperty.Register(
+            "ID", typeof (int), typeof (StudentItem), new PropertyMetadata(default(int)));
 
-        public int Id
+        public int ID
         {
-            get { return (int) GetValue(IdProperty); }
-            set { SetValue(IdProperty, value); }
+            get { return (int) GetValue(IDProperty); }
+            set { SetValue(IDProperty, value); }
         }
 
         public static readonly DependencyProperty FirstNameProperty = DependencyProperty.Register(
@@ -41,7 +41,7 @@ namespace KarateManagement
         }
 
         public static readonly DependencyProperty DateOfBirthProperty = DependencyProperty.Register(
-            "DateOfBirth", typeof (DateTime), typeof (StudentItem), new PropertyMetadata(default(DateTime)));
+            "DateOfBirthOfBirth", typeof (DateTime), typeof (StudentItem), new PropertyMetadata(default(DateTime)));
 
         public DateTime DateOfBirth
         {
@@ -103,13 +103,13 @@ namespace KarateManagement
             set { SetValue(BeltProperty, value); }
         }
 
-        public static readonly DependencyProperty BalanceDecimalProperty = DependencyProperty.Register(
-            "BalanceDecimal", typeof (decimal), typeof (StudentItem), new PropertyMetadata(default(decimal)));
+        public static readonly DependencyProperty BalanceProperty = DependencyProperty.Register(
+            "Balance", typeof (decimal), typeof (StudentItem), new PropertyMetadata(default(decimal)));
 
-        public decimal BalanceDecimal
+        public decimal Balance
         {
-            get { return (decimal) GetValue(BalanceDecimalProperty); }
-            set { SetValue(BalanceDecimalProperty, value); }
+            get { return (decimal) GetValue(BalanceProperty); }
+            set { SetValue(BalanceProperty, value); }
         }
 
         public static readonly DependencyProperty MembershipEndDateProperty = DependencyProperty.Register(
@@ -119,6 +119,32 @@ namespace KarateManagement
         {
             get { return (DateTime) GetValue(MembershipEndDateProperty); }
             set { SetValue(MembershipEndDateProperty, value); }
+        }
+
+
+        public Student ToStudent()
+        {
+            return new Student(ID, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt, Balance, MembershipEndDate);
+        }
+
+        /// <summary>
+        /// Parameterized constructor that copies the fiels of Student
+        /// </summary>
+        /// <param name="s">A student object to copy</param>
+        public StudentItem(Student s)
+        {
+            ID = s.ID;
+            FirstName = s.FirstName;
+            LastName = s.LastName;
+            DateOfBirth = s.DateOfBirthOfBirth;
+            Address = s.Address;
+            PostalCode = s.PostalCode;
+            PhoneNumber = s.PhoneNumber;
+            Email = s.Email;
+            Hours = s.Hours;
+            Belt = s.Belt;
+            Balance = s.Balance;
+            MembershipEndDate = s.MembershipEndDate;
         }
 
 

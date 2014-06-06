@@ -70,7 +70,7 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO Student (FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt)
+        ///   Looks up a localized string similar to INSERT INTO Student (FirstName, LastName, DateOfBirthOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt)
         ///VALUES (&apos;{0}&apos;, &apos;{1}&apos;, &apos;{2}&apos;, &apos;{3}&apos;, &apos;{4}&apos;, &apos;{5}&apos;, &apos;{6}&apos;, &apos;{7}&apos;, &apos;{8}&apos;);.
         /// </summary>
         internal static string CreateStudent {
@@ -85,7 +85,7 @@ namespace KarateManagement.Properties {
         ///	ID INT PRIMARY KEY,
         ///	FirstName varchar(20),
         ///	LastName varchar(20),
-        ///	DateOfBirth datetime,
+        ///	DateOfBirthOfBirth datetime,
         ///	Address varchar(100),
         ///	PostalCode char(6),
         ///	PhoneNumber varchar(10),

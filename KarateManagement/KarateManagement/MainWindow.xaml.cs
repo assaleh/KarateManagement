@@ -48,6 +48,9 @@ namespace KarateManagement
 
         private void NewStudent_OnClick(object sender, RoutedEventArgs e)
         {
+            EditStudent editStudent = new EditStudent();
+            bool? result = editStudent.ShowDialog();
+            
             Student s = new Student();
             s.ID = SqlHelper.GetHighestID().Result + 1;
 

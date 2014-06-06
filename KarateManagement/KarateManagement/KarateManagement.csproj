@@ -58,9 +58,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Belt.cs" />
+    <Compile Include="EditStudent.xaml.cs">
+      <DependentUpon>EditStudent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SqlHelper.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentItem.cs" />
+    <Page Include="EditStudent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

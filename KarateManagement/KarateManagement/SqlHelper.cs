@@ -123,7 +123,8 @@ namespace KarateManagement
         /// <param name="student">A student object to insert</param>
         async public static Task CreateStudent(Student student)
         {
-            string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirth,
+            //TODO add try catch
+            string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirthOfBirth,
                 student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
             MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
             Task<int> t = cmd.ExecuteNonQueryAsync();
@@ -160,7 +161,6 @@ namespace KarateManagement
                 //TODO log exception somewhere
                 
             }
-            
            
             return id;
 
