@@ -50,7 +50,7 @@ namespace KarateManagement
                 if(connected)
                     initializeDb = InitializeDB();
                 else
-                    MessageBox.Show(e.Message);
+                    ErrorLogger.Logger.Write(e.ToString());
             }
 
             if (initializeDb != null)
@@ -78,8 +78,7 @@ namespace KarateManagement
             }
             catch (Exception e)
             {
-                //TODO Log, System.Exit? Cant connect to DB
-                
+                ErrorLogger.Logger.Write(e.ToString());
             }
             
         }
@@ -97,8 +96,7 @@ namespace KarateManagement
             }
             catch (Exception e)
             {
-                //TODO; Maybe log the exception
-                
+                ErrorLogger.Logger.Write(e.ToString());
             }
         }
 
@@ -112,8 +110,7 @@ namespace KarateManagement
             }
             catch (Exception e)
             {
-                //TODO; Maybe log the exception
-                
+                ErrorLogger.Logger.Write(e.ToString());
             }
         }
 
@@ -123,14 +120,19 @@ namespace KarateManagement
         /// <param name="student">A student object to insert</param>
         async public static Task CreateStudent(Student student)
         {
-            //TODO add try catch
-            string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirthOfBirth,
+            try
+            {
+                string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirthOfBirth,
                 student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
-            MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
-            Task<int> t = cmd.ExecuteNonQueryAsync();
+                MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
+                Task<int> t = cmd.ExecuteNonQueryAsync();
 
-            await t;
-
+                await t;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString());
+            }
         }
 
         /// <summary>
@@ -158,8 +160,7 @@ namespace KarateManagement
             }
             catch (InvalidOperationException e)
             {
-                //TODO log exception somewhere
-                
+                ErrorLogger.Logger.Write(e.ToString());
             }
            
             return id;
@@ -176,11 +177,23 @@ namespace KarateManagement
             String script = "Delete From student where ID = {0}";
             String deleteStudent = String.Format(script, id);
             MySqlCommand cmd = new MySqlCommand(deleteStudent, m_connection);
-            Task<int> t = cmd.ExecuteNonQueryAsync();
+            try
+            {
+                Task<int> t = cmd.ExecuteNonQueryAsync();
 
-            await t;
-            
+                await t;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString());
+            }
         }
+
+        //async public static Task<Student> GetStudent(int id)
+        //{
+        //    string script = String.Format("select * from student where id = {0}", id);
+        //    MySqlCommand cmd = new MySqlCommand(script, m_connection);
+        //}
 
         /*
          * async public static Task Update()

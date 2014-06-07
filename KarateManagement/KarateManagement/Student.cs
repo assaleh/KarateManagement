@@ -11,7 +11,6 @@ namespace KarateManagement
     /// </summary>
     public class Student
     {
-        //TODO change set to private. Set it in constructor
         public int ID { get; set; } 
         
         public string FirstName { get; set; }
