@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     
-    
     <Grid Name="WindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -12,8 +11,8 @@
         
         
         <Menu DockPanel.Dock="Top" Height="23" VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0">
-            <MenuItem Header="_File">
-                <MenuItem Header="New Student" Click="NewStudent_OnClick"></MenuItem>
+            <MenuItem Header="{DynamicResource File}">
+                <MenuItem Header="{DynamicResource NewStudent}" Click="NewStudent_OnClick"></MenuItem>
             </MenuItem>
 
         </Menu>

@@ -70,8 +70,8 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO Student (FirstName, LastName, DateOfBirthOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt)
-        ///VALUES (&apos;{0}&apos;, &apos;{1}&apos;, &apos;{2}&apos;, &apos;{3}&apos;, &apos;{4}&apos;, &apos;{5}&apos;, &apos;{6}&apos;, &apos;{7}&apos;, &apos;{8}&apos;);.
+        ///   Looks up a localized string similar to INSERT INTO Student (ID, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt, Balance, MembershipEndDate)
+        ///VALUES (&apos;{0}&apos;, &apos;{1}&apos;, &apos;{2}&apos;, &apos;{3}&apos;, &apos;{4}&apos;, &apos;{5}&apos;, &apos;{6}&apos;, &apos;{7}&apos;, &apos;{8}&apos;, &apos;{9}&apos;, &apos;{10}&apos;, &apos;{11}&apos;);.
         /// </summary>
         internal static string CreateStudent {
             get {
@@ -85,7 +85,7 @@ namespace KarateManagement.Properties {
         ///	ID INT PRIMARY KEY,
         ///	FirstName varchar(20),
         ///	LastName varchar(20),
-        ///	DateOfBirthOfBirth datetime,
+        ///	DateOfBirth datetime,
         ///	Address varchar(100),
         ///	PostalCode char(6),
         ///	PhoneNumber varchar(10),
@@ -99,6 +99,38 @@ namespace KarateManagement.Properties {
         internal static string CreateTable {
             get {
                 return ResourceManager.GetString("CreateTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ResourceDictionary xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///                    xmlns:system=&quot;clr-namespace:System;assembly=mscorlib&quot;&gt;
+        ///
+        ///    &lt;system:String x:Key=&quot;File&quot;&gt;File&lt;/system:String&gt;
+        ///    &lt;system:String x:Key=&quot;NewStudent&quot;&gt;New Student&lt;/system:String&gt;
+        ///    
+        ///&lt;/ResourceDictionary&gt;.
+        /// </summary>
+        internal static string StringResources {
+            get {
+                return ResourceManager.GetString("StringResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ResourceDictionary xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///                    xmlns:system=&quot;clr-namespace:System;assembly=mscorlib&quot;&gt;
+        ///
+        ///    &lt;system:String x:Key=&quot;File&quot;&gt;Fichier&lt;/system:String&gt;
+        ///    &lt;system:String x:Key=&quot;NewStudent&quot;&gt;Nouveau Etudiant&lt;/system:String&gt;
+        ///    
+        ///&lt;/ResourceDictionary&gt;.
+        /// </summary>
+        internal static string StringResources_fr_CA {
+            get {
+                return ResourceManager.GetString("StringResources_fr_CA", resourceCulture);
             }
         }
     }

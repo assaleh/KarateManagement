@@ -23,6 +23,8 @@ namespace KarateManagement
         public MainWindow()
         {
             InitializeComponent();
+            
+            SetLanguageDictionary();
 
             //Start a new task so that it runs on the Dispatcher thread instead of the UI thread
             var t = new Task(() =>
@@ -42,8 +44,8 @@ namespace KarateManagement
 
         private void NewStudent_OnClick(object sender, RoutedEventArgs e)
         {
-            EditStudent editStudent = new EditStudent();
-            bool? result = editStudent.ShowDialog();
+            //EditStudent editStudent = new EditStudent();
+            //bool? result = editStudent.ShowDialog();
             
             Student s = new Student();
             s.ID = SqlHelper.GetHighestID().Result + 1;
@@ -52,6 +54,20 @@ namespace KarateManagement
             t.Wait();
 
             MessageBox.Show(String.Format("Highest ID is now {0}", s.ID));
+        }
+
+        private void SetLanguageDictionary()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            //TODO make this better
+            bool french = true;
+            if(french)
+                dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
+            else
+                dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
+            
+            
+            this.Resources.MergedDictionaries.Add(dict);
         }
     }
 }
