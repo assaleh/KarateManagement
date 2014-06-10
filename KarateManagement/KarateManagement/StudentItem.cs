@@ -41,7 +41,7 @@ namespace KarateManagement
         }
 
         public static readonly DependencyProperty DateOfBirthProperty = DependencyProperty.Register(
-            "DateOfBirthOfBirth", typeof (DateTime), typeof (StudentItem), new PropertyMetadata(default(DateTime)));
+            "DateOfBirth", typeof (DateTime), typeof (StudentItem), new PropertyMetadata(default(DateTime)));
 
         public DateTime DateOfBirth
         {
@@ -136,7 +136,7 @@ namespace KarateManagement
             ID = s.ID;
             FirstName = s.FirstName;
             LastName = s.LastName;
-            DateOfBirth = s.DateOfBirthOfBirth;
+            DateOfBirth = s.DateOfBirth;
             Address = s.Address;
             PostalCode = s.PostalCode;
             PhoneNumber = s.PhoneNumber;

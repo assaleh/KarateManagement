@@ -10,6 +10,6 @@
 	Email varchar(40),
 	Hours int,
 	Belt int,
-	Balance decimal,
+	Balance decimal(10,2),
 	MembershipEndDate datetime
 );

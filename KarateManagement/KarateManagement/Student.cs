@@ -17,7 +17,7 @@ namespace KarateManagement
 
         public string LastName { get; set; }
 
-        public DateTime DateOfBirthOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         public string Address { get; set; }
 
@@ -45,7 +45,7 @@ namespace KarateManagement
             ID = id;
             FirstName = firstName;
             LastName = lastName;
-            DateOfBirthOfBirth = dateOfBirth;
+            DateOfBirth = dateOfBirth;
             Address = address;
             PostalCode = postalCode;
             PhoneNumber = phoneNumber;
@@ -59,7 +59,7 @@ namespace KarateManagement
         public override string ToString()
         {
             String s = "{0} {1} {2} {3} {4} {5} {6} {7} {8} {9}";
-            String s2 = String.Format(s,ID, FirstName, LastName, DateOfBirthOfBirth, Address, PostalCode, PhoneNumber,
+            String s2 = String.Format(s,ID, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber,
                 Email, Hours, Belt);
             return s2;
         }

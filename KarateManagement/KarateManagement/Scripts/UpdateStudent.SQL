@@ -1,0 +1,1 @@
+﻿UPDATE `karatemanagement`.`student` SET `LastName` = 'farhat', `DateOfBirth` = '2001-07-10 12:00:00', `Address` = '123 dfgfdg', `PostalCode` = 'dfgd', `PhoneNumber` = '234324', `Email` = 'wsefsdf@gay.com', `Hours` = '3', `Belt` = '1', `Balance` = '350.256', `MembershipEndDate` = '2011-01-18 12:00:00' WHERE `student`.`ID` = 2;

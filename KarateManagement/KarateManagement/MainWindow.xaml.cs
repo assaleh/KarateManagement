@@ -39,7 +39,18 @@ namespace KarateManagement
 
         private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            SqlHelper.DeleteStudent(SqlHelper.GetHighestID().Result);
+            
+            var t = new Task(() =>
+            {
+
+                Task<Student> task =  SqlHelper.GetStudent(2);
+                Student s = task.Result;
+                MessageBox.Show(s.FirstName);
+
+            });
+            t.Start();
+
+            //SqlHelper.DeleteStudent(SqlHelper.GetHighestID().Result);
         }
 
         private void NewStudent_OnClick(object sender, RoutedEventArgs e)

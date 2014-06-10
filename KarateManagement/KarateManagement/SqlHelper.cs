@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -83,12 +84,15 @@ namespace KarateManagement
             
         }
 
+        /// <summary>
+        /// Creates a Database called "KarateManagement"
+        /// </summary>
+        /// <returns></returns>
         async private static Task CreateDB()
         {
             try
             {
-                string createDB = String.Format(Resources.CreateDB, "KarateManagement"); 
-                MySqlCommand cmd = new MySqlCommand(createDB, m_connection);
+                MySqlCommand cmd = new MySqlCommand(Resources.CreateDB, m_connection);
                 await cmd.ExecuteNonQueryAsync();
 
                 Console.WriteLine("Createding DB");
@@ -100,12 +104,12 @@ namespace KarateManagement
             }
         }
 
+
         private static void CreateTable()
         {
             try
             {
-                string createTable = String.Format(Resources.CreateTable, "KarateManagement");
-                MySqlCommand cmd = new MySqlCommand(createTable, m_connection);
+                MySqlCommand cmd = new MySqlCommand(Resources.CreateTable, m_connection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -122,7 +126,7 @@ namespace KarateManagement
         {
             try
             {
-                string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirthOfBirth,
+                string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirth,
                 student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
                 MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
                 Task<int> t = cmd.ExecuteNonQueryAsync();
@@ -164,7 +168,6 @@ namespace KarateManagement
             }
            
             return id;
-
         }
 
         /// <summary>
@@ -189,11 +192,50 @@ namespace KarateManagement
             }
         }
 
-        //async public static Task<Student> GetStudent(int id)
-        //{
-        //    string script = String.Format("select * from student where id = {0}", id);
-        //    MySqlCommand cmd = new MySqlCommand(script, m_connection);
-        //}
+
+        /// <summary>
+        /// Gets a Student object from the database
+        /// </summary>
+        /// <param name="id">The ID of the student</param>
+        /// <returns>A student object with all its fields populated</returns>
+        async public static Task<Student> GetStudent(int id)
+        {
+            string script = String.Format("select * from student where id = {0}", id);
+            MySqlCommand cmd = new MySqlCommand(script, m_connection);
+            DbDataReader reader;
+            DataTable dt = new DataTable();
+            Student s = new Student();
+
+            try
+            {
+                reader = await cmd.ExecuteReaderAsync();
+
+                dt.Load(reader);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    s.ID = Convert.ToInt32(row["ID"].ToString());
+                    s.FirstName = row["FirstName"].ToString();
+                    s.LastName = row["LastName"].ToString();
+                    s.DateOfBirth = Convert.ToDateTime(row["DateOfBirth"]);
+                    s.Address = row["Address"].ToString();
+                    s.PhoneNumber = s.Address = row["PhoneNumber"].ToString();
+                    s.PostalCode = row["PostalCode"].ToString();
+                    s.Email = row["Email"].ToString();
+                    s.Hours = Convert.ToInt32(row["Hours"].ToString());
+                    s.Belt = (Belt)Convert.ToInt32(row["Belt"].ToString());
+                    s.Balance = Convert.ToDecimal(row["Balance"].ToString());
+                    s.MembershipEndDate = Convert.ToDateTime(row["MembershipEndDate"]);
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString());
+            }
+
+            return s;
+        }
+
 
         /*
          * async public static Task Update()

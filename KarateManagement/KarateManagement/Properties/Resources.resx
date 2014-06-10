@@ -133,4 +133,7 @@
   <data name="StringResources_fr_CA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\stringresources.fr-ca.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="UpdateStudent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scripts\updatestudent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

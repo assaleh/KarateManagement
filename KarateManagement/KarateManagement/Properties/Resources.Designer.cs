@@ -61,7 +61,7 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE DATABASE IF NOT EXISTS {0};.
+        ///   Looks up a localized string similar to CREATE DATABASE IF NOT EXISTS KarateManagement;.
         /// </summary>
         internal static string CreateDB {
             get {
@@ -92,7 +92,7 @@ namespace KarateManagement.Properties {
         ///	Email varchar(40),
         ///	Hours int,
         ///	Belt int,
-        ///	Balance decimal,
+        ///	Balance decimal(10,2),
         ///	MembershipEndDate datetime
         ///);.
         /// </summary>
@@ -131,6 +131,15 @@ namespace KarateManagement.Properties {
         internal static string StringResources_fr_CA {
             get {
                 return ResourceManager.GetString("StringResources_fr_CA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE `karatemanagement`.`student` SET `LastName` = &apos;farhat&apos;, `DateOfBirth` = &apos;2001-07-10 12:00:00&apos;, `Address` = &apos;123 dfgfdg&apos;, `PostalCode` = &apos;dfgd&apos;, `PhoneNumber` = &apos;234324&apos;, `Email` = &apos;wsefsdf@gay.com&apos;, `Hours` = &apos;3&apos;, `Belt` = &apos;1&apos;, `Balance` = &apos;350.256&apos;, `MembershipEndDate` = &apos;2011-01-18 12:00:00&apos; WHERE `student`.`ID` = 2;.
+        /// </summary>
+        internal static string UpdateStudent {
+            get {
+                return ResourceManager.GetString("UpdateStudent", resourceCulture);
             }
         }
     }
