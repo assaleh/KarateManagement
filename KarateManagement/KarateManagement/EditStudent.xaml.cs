@@ -21,17 +21,9 @@ namespace KarateManagement
     {
         public EditStudent()
         {
-            //Setting language references
-            ResourceDictionary dict = new ResourceDictionary();
-
-            if (MainWindow.FrenchLanguage)
-                dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
-            else
-                dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
-
-            this.Resources.MergedDictionaries.Add(dict);
-
             InitializeComponent();
+
+            SetLanguageDictionary();
 
             //TESTING Binding to studentItem
             Student student = new Student(156, "Joe", "Blow", new DateTime(1988,11,29), "185 Varry", "H4nSTFUNICK", 
@@ -47,6 +39,19 @@ namespace KarateManagement
         {
             //Binding StudentItem to XAML
             DataGrid.DataContext = studentItem;
+        }
+
+        private void SetLanguageDictionary()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            //TODO make this better
+
+            if (MainWindow.French)
+                dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
+            else
+                dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
+
+            this.Resources.MergedDictionaries.Add(dict);
         }
     }
 }

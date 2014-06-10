@@ -121,7 +121,10 @@ namespace KarateManagement
             set { SetValue(MembershipEndDateProperty, value); }
         }
 
-
+        /// <summary>
+        /// Function used to convert the StudentItem into an instance of the Student class
+        /// </summary>
+        /// <returns>A Student object</returns>
         public Student ToStudent()
         {
             return new Student(ID, FirstName, LastName, DateOfBirth, Address, PostalCode, PhoneNumber, Email, Hours, Belt, Balance, MembershipEndDate);
@@ -146,5 +149,27 @@ namespace KarateManagement
             Balance = s.Balance;
             MembershipEndDate = s.MembershipEndDate;
         }
+
+        /// <summary>
+        /// Copy Constructor
+        /// </summary>
+        /// <param name="s">A student item to create a copy of</param>
+        public StudentItem(StudentItem s)
+        {
+            ID = s.ID;
+            FirstName = s.FirstName;
+            LastName = s.LastName;
+            DateOfBirth = s.DateOfBirth;
+            Address = s.Address;
+            PostalCode = s.PostalCode;
+            PhoneNumber = s.PhoneNumber;
+            Email = s.Email;
+            Hours = s.Hours;
+            Belt = s.Belt;
+            Balance = s.Balance;
+            MembershipEndDate = s.MembershipEndDate;
+        }
+
+
     }
 }

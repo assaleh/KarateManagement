@@ -7,6 +7,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         
@@ -14,15 +16,25 @@
             <MenuItem Header="{DynamicResource File}">
                 <MenuItem Header="{DynamicResource NewStudent}" Click="NewStudent_OnClick"></MenuItem>
             </MenuItem>
-
         </Menu>
 
         <StackPanel Grid.Row="1">
-           
-            
-            <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="100" Height="50">Delete Student</Button>
-        
+            <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="50" Height="30">Delete</Button>
         </StackPanel>
+
+
+        <ListView Grid.Row="2" VerticalAlignment="Stretch" Name="StudentList" MouseDoubleClick="StudentList_OnMouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="30" DisplayMemberBinding="{Binding StudentItem.ID}">
+                        <GridViewColumnHeader Content="ID"></GridViewColumnHeader>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        
+        
         
     </Grid>
 </Window>

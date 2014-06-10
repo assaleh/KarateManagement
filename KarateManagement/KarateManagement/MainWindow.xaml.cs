@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,30 +21,27 @@ namespace KarateManagement
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public static bool FrenchLanguage { get; set; }
-
+        public static bool French { get; set; }
+        private ObservableCollection<StudentItem> m_Students = new ObservableCollection<StudentItem>();
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            FrenchLanguage = true;
-
             SetLanguageDictionary();
+
+            StudentList.ItemsSource = m_Students;
 
             //Start a new task so that it runs on the Dispatcher thread instead of the UI thread
             var t = new Task(() =>
             {
-                
                 SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
-                
             });
             t.Start();
         }
 
         private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
             var t = new Task(() =>
             {
                 Task<Student> task =  SqlHelper.GetStudent(2);
@@ -75,12 +73,31 @@ namespace KarateManagement
             ResourceDictionary dict = new ResourceDictionary();
             //TODO: make this better
 
-            if(FrenchLanguage)
+            if(French)
                 dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
             else
                 dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
             
             this.Resources.MergedDictionaries.Add(dict);
+        }
+
+        private void StudentList_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            StudentItem studentItem = StudentList.SelectedItem as StudentItem;
+
+            if (studentItem != null)
+            {
+                StudentItem studentItemCopy = new StudentItem(studentItem);
+
+                EditStudent editStudent = new EditStudent(studentItemCopy);
+                bool? result = editStudent.ShowDialog();
+
+                if (result.HasValue && result.Value)
+                {
+                    m_Students[m_Students.IndexOf(studentItem)] = studentItemCopy;
+                }
+            }
+
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿using System;
+﻿#define DEBUG
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
+
 
 namespace KarateManagement
 {
@@ -15,7 +18,12 @@ namespace KarateManagement
     public class ErrorLogger
     {
         private static ErrorLogger logger;
+
+#if DEBUG
         private const bool ShowErrors = true;
+#else
+        private const bool ShowErrors = false;
+#endif
 
         private ErrorLogger()
         {
