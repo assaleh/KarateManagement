@@ -1,0 +1,1 @@
+﻿Delete From student where ID = {0};

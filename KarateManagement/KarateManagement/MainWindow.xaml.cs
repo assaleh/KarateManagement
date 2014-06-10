@@ -20,10 +20,15 @@ namespace KarateManagement
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public static bool FrenchLanguage { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            FrenchLanguage = true;
+
             SetLanguageDictionary();
 
             //Start a new task so that it runs on the Dispatcher thread instead of the UI thread
@@ -34,7 +39,6 @@ namespace KarateManagement
                 
             });
             t.Start();
-            
         }
 
         private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
@@ -42,7 +46,6 @@ namespace KarateManagement
             
             var t = new Task(() =>
             {
-
                 Task<Student> task =  SqlHelper.GetStudent(2);
                 Student s = task.Result;
                 MessageBox.Show(s.FirstName);
@@ -55,14 +58,14 @@ namespace KarateManagement
 
         private void NewStudent_OnClick(object sender, RoutedEventArgs e)
         {
-            //EditStudent editStudent = new EditStudent();
-            //bool? result = editStudent.ShowDialog();
-            
             Student s = new Student();
             s.ID = SqlHelper.GetHighestID().Result + 1;
 
-            Task t = SqlHelper.CreateStudent(s);
-            t.Wait();
+            //Task t = SqlHelper.CreateStudent(s);
+            //t.Wait();
+
+            EditStudent editStudent = new EditStudent();
+            bool? result = editStudent.ShowDialog();
 
             MessageBox.Show(String.Format("Highest ID is now {0}", s.ID));
         }
@@ -70,13 +73,12 @@ namespace KarateManagement
         private void SetLanguageDictionary()
         {
             ResourceDictionary dict = new ResourceDictionary();
-            //TODO make this better
-            bool french = true;
-            if(french)
+            //TODO: make this better
+
+            if(FrenchLanguage)
                 dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
             else
                 dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
-            
             
             this.Resources.MergedDictionaries.Add(dict);
         }

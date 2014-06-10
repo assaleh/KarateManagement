@@ -2,8 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <!--File Menu-->
     <system:String x:Key="File">Fichier</system:String>
     <system:String x:Key="NewStudent">Nouveau Etudiant</system:String>
-    <system:String x:Key="ID">Numéro d'identification</system:String>
     
+    <!--Edit Student-->
+    <system:String x:Key="ID">Numéro d'identification</system:String>
+    <system:String x:Key="FirstName">Prénom</system:String>
+    <system:String x:Key="LastName">Nom</system:String>
+    <system:String x:Key="DateOfBirth">Date de naissance</system:String>
+    <system:String x:Key="Address">Adresse</system:String>
+    <system:String x:Key="PostalCode">Code postal</system:String>
+    <system:String x:Key="PhoneNumber">Numéro de téléphone</system:String>
+    <system:String x:Key="Email">Adresse courriel</system:String>
+    <system:String x:Key="Hours">Heures</system:String>
+    <system:String x:Key="Belt">Ceinture</system:String>
+    <system:String x:Key="Balance">Balance</system:String>
+    <system:String x:Key="MembershipEndDate">Date d'éxpiration</system:String>
+
 </ResourceDictionary>

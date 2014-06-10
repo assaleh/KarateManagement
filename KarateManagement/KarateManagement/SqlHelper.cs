@@ -19,7 +19,6 @@ namespace KarateManagement
     public static class SqlHelper
     {
         private static MySqlConnection m_connection;
-        
         async public static Task Connect(string connectionString)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -38,6 +37,8 @@ namespace KarateManagement
                 Console.WriteLine("ConnectionString: {0}",
                     connection.ConnectionString);
 
+
+
                 string useDB = String.Format("Use karatemanagement;");
                 MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
                 await cmd.ExecuteNonQueryAsync();
@@ -46,7 +47,7 @@ namespace KarateManagement
             }
             catch (MySqlException e)
             {
-                if(connected)
+                if (connected)
                     initializeDb = InitializeDB();
                 else
                     ErrorLogger.Logger.Write(e.ToString(), false);
@@ -64,7 +65,7 @@ namespace KarateManagement
             {
                 await initializeDb;
             }
-            
+
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace KarateManagement
             {
                 ErrorLogger.Logger.Write(e.ToString(), true);
             }
-            
+
         }
 
         /// <summary>
@@ -104,8 +105,7 @@ namespace KarateManagement
             {
                 MySqlCommand cmd = new MySqlCommand(Resources.CreateDB, m_connection);
                 await cmd.ExecuteNonQueryAsync();
-
-                Console.WriteLine("Createding DB");
+                Console.WriteLine("Creating DB");
             }
             catch (DbException e)
             {
@@ -116,7 +116,6 @@ namespace KarateManagement
                 ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
-
 
         async private static Task CreateTable()
         {
@@ -144,7 +143,7 @@ namespace KarateManagement
             try
             {
                 string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirth,
-                student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
+                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
                 MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
                 Task<int> t = cmd.ExecuteNonQueryAsync();
 
@@ -166,14 +165,15 @@ namespace KarateManagement
         /// <returns></returns>
         async public static Task<int> GetHighestID()
         {
-            string query = "Select MAX(ID) as ID from Student";
+            string query = Resources.SelectMaxID;
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
             int id = 0;
+
             try
             {
                 Task<object> t = cmd.ExecuteScalarAsync();
                 var obj = await t;
-                
+
                 if (DBNull.Value.Equals(obj))
                 {
                     id = 0;
@@ -206,14 +206,13 @@ namespace KarateManagement
         /// <returns>A task that can be awaited</returns>
         async public static Task DeleteStudent(int id)
         {
-            String script = "Delete From student where ID = {0}";
-            String deleteStudent = String.Format(script, id);
+            String deleteStudent = String.Format(Resources.DeleteStudent, id);
             MySqlCommand cmd = new MySqlCommand(deleteStudent, m_connection);
+
             try
             {
-                Task<int> t = cmd.ExecuteNonQueryAsync();
-
-                await t;
+                await cmd.ExecuteNonQueryAsync();
+                Console.WriteLine(String.Format("Deleting student #{0}", id));
             }
             catch (DbException e)
             {
@@ -224,7 +223,6 @@ namespace KarateManagement
                 ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
-
 
         /// <summary>
         /// Gets a Student object from the database
@@ -281,6 +279,6 @@ namespace KarateManagement
          * FROM mytable
          */
 
-        
+
     }
 }

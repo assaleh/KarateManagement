@@ -146,9 +146,5 @@ namespace KarateManagement
             Balance = s.Balance;
             MembershipEndDate = s.MembershipEndDate;
         }
-
-
     }
-
-
 }

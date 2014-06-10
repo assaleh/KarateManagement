@@ -103,6 +103,24 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete From student where ID = {0};.
+        /// </summary>
+        internal static string DeleteStudent {
+            get {
+                return ResourceManager.GetString("DeleteStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select MAX(ID) as ID from Student;.
+        /// </summary>
+        internal static string SelectMaxID {
+            get {
+                return ResourceManager.GetString("SelectMaxID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;ResourceDictionary xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
         ///                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
         ///                    xmlns:system=&quot;clr-namespace:System;assembly=mscorlib&quot;&gt;

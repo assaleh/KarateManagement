@@ -1,0 +1,1 @@
+﻿Select MAX(ID) as ID from Student;
