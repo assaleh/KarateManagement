@@ -195,7 +195,7 @@ namespace KarateManagement
             {
                 ErrorLogger.Logger.Write(e.ToString(), true);
             }
-           
+
             return id;
         }
 

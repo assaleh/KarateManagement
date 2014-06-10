@@ -23,11 +23,12 @@ namespace KarateManagement
     {
         public static bool French { get; set; }
         private ObservableCollection<StudentItem> m_Students = new ObservableCollection<StudentItem>();
-        
+
         public MainWindow()
         {
             InitializeComponent();
 
+            French = true;
             SetLanguageDictionary();
 
             StudentList.ItemsSource = m_Students;
@@ -44,7 +45,7 @@ namespace KarateManagement
         {
             var t = new Task(() =>
             {
-                Task<Student> task =  SqlHelper.GetStudent(2);
+                Task<Student> task = SqlHelper.GetStudent(2);
                 Student s = task.Result;
                 MessageBox.Show(s.FirstName);
 
@@ -73,11 +74,11 @@ namespace KarateManagement
             ResourceDictionary dict = new ResourceDictionary();
             //TODO: make this better
 
-            if(French)
+            if (French)
                 dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
             else
                 dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
-            
+
             this.Resources.MergedDictionaries.Add(dict);
         }
 
@@ -92,12 +93,48 @@ namespace KarateManagement
                 EditStudent editStudent = new EditStudent(studentItemCopy);
                 bool? result = editStudent.ShowDialog();
 
-                if (result.HasValue && result.Value)
+                if (result.HasValue && !result.Value)
                 {
-                    m_Students[m_Students.IndexOf(studentItem)] = studentItemCopy;
+                    //m_Students[m_Students.IndexOf(studentItem)] = studentItemCopy;
+                    studentItem.CopyFields(studentItemCopy);
                 }
             }
 
         }
+
+        private void NewStudentButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            StudentItem student = new StudentItem();
+
+            EditStudent editStudent = new EditStudent(student);
+            bool? result = editStudent.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                m_Students.Add(student);
+                SqlHelper.CreateStudent(student.ToStudent());
+            }
+        }
+
+        private void EditStudentButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestButton1_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestButton2_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TestButton3_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
