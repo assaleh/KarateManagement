@@ -38,8 +38,6 @@ namespace KarateManagement
                 Console.WriteLine("ConnectionString: {0}",
                     connection.ConnectionString);
 
-                
-                
                 string useDB = String.Format("Use karatemanagement;");
                 MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
                 await cmd.ExecuteNonQueryAsync();
@@ -51,7 +49,15 @@ namespace KarateManagement
                 if(connected)
                     initializeDb = InitializeDB();
                 else
-                    ErrorLogger.Logger.Write(e.ToString());
+                    ErrorLogger.Logger.Write(e.ToString(), false);
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
 
             if (initializeDb != null)
@@ -75,11 +81,15 @@ namespace KarateManagement
                 MySqlCommand cmd = new MySqlCommand(useDB, m_connection);
                 await cmd.ExecuteNonQueryAsync();
 
-                CreateTable();
+                await CreateTable();
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
             }
             catch (Exception e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
             
         }
@@ -87,7 +97,7 @@ namespace KarateManagement
         /// <summary>
         /// Creates a Database called "KarateManagement"
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An awaitable task that Creates a DB</returns>
         async private static Task CreateDB()
         {
             try
@@ -96,25 +106,32 @@ namespace KarateManagement
                 await cmd.ExecuteNonQueryAsync();
 
                 Console.WriteLine("Createding DB");
-
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
             }
             catch (Exception e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
 
 
-        private static void CreateTable()
+        async private static Task CreateTable()
         {
             try
             {
                 MySqlCommand cmd = new MySqlCommand(Resources.CreateTable, m_connection);
-                cmd.ExecuteNonQuery();
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
             }
             catch (Exception e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
 
@@ -133,9 +150,13 @@ namespace KarateManagement
 
                 await t;
             }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
             catch (Exception e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
 
@@ -164,7 +185,15 @@ namespace KarateManagement
             }
             catch (InvalidOperationException e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
            
             return id;
@@ -186,9 +215,13 @@ namespace KarateManagement
 
                 await t;
             }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
             catch (Exception e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
 
@@ -228,9 +261,13 @@ namespace KarateManagement
                     s.MembershipEndDate = Convert.ToDateTime(row["MembershipEndDate"]);
                 }
             }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
             catch (Exception e)
             {
-                ErrorLogger.Logger.Write(e.ToString());
+                ErrorLogger.Logger.Write(e.ToString(), true);
             }
 
             return s;

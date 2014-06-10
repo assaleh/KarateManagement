@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace KarateManagement
 {
@@ -14,6 +15,7 @@ namespace KarateManagement
     public class ErrorLogger
     {
         private static ErrorLogger logger;
+        private const bool ShowErrors = true;
 
         private ErrorLogger()
         {
@@ -35,8 +37,12 @@ namespace KarateManagement
         /// Writes an error message to a log file
         /// </summary>
         /// <param name="error">A message to log</param>
-        public void Write(string error)
+        /// <param name="showMessageBox">True if you want a Message box to appear and show the user the error</param>
+        public void Write(string error, bool showMessageBox)
         {
+            if (showMessageBox || ShowErrors)
+                MessageBox.Show(error);
+            
             string fileName = String.Format("ErrorLog_{0}-{1}-{2}.log", DateTime.Now.Year, DateTime.Now.Month, 
                 DateTime.Now.Day); 
             

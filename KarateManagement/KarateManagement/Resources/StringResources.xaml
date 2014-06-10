@@ -4,5 +4,6 @@
 
     <system:String x:Key="File">File</system:String>
     <system:String x:Key="NewStudent">New Student</system:String>
+    <system:String x:Key="ID">ID</system:String>
     
 </ResourceDictionary>
