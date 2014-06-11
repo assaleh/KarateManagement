@@ -52,7 +52,15 @@
 
         <TextBox Name="LastName_TextBox" Margin="25,5,10,5" Grid.Row="2" Grid.Column="1" Text ="{Binding LastName}"/>
 
-        <DatePicker Name="DOB_DatePicker" Margin="25,5,10,5" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding DateOfBirth}"/>
+        <DatePicker Name="DOB_DatePicker" Margin="25,5,10,5" Grid.Row="3" Grid.Column="1">
+            <DatePicker.SelectedDate>
+                <Binding Path="DateOfBirth" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:DateValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.SelectedDate>
+        </DatePicker>
 
         <TextBox Name="Address_TextBox" Margin="25,5,10,5" Grid.Row="4" Grid.Column="1" Text ="{Binding Address}"/>
 
@@ -108,7 +116,17 @@
             </TextBox.Text>
         </TextBox>
 
-        <DatePicker Name="MembershipEndDate_DatePicker" Grid.Row="11" Grid.Column="1"  SelectedDate="{Binding MembershipEndDate}" Margin="25,5,10,5"/>
+        <DatePicker Name="MembershipEndDate_DatePicker" Grid.Row="11" Grid.Column="1" Margin="25,5,10,5">
+            <DatePicker.SelectedDate>
+                <Binding Path="MembershipEndDate" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:DateValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </DatePicker.SelectedDate>
+        </DatePicker>
+
+
 
         <Button Name="OK_Button" IsDefault="True" Content="OK" Grid.Row="12" Grid.Column="0"
                 Margin="30,20,30,20" Height="30" Width="50" Click="OK_Button_OnClick" VerticalAlignment="Bottom" HorizontalAlignment="Right">
@@ -126,6 +144,8 @@
                                 <Condition Binding="{Binding ElementName=Email_TextBox, Path=(Validation.HasError)}" Value="false" />
                                 <Condition Binding="{Binding ElementName=Hours_TextBox, Path=(Validation.HasError)}" Value="false" />
                                 <Condition Binding="{Binding ElementName=Balance_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=DOB_DatePicker, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=MembershipEndDate_DatePicker, Path=(Validation.HasError)}" Value="false" />
 
                             </MultiDataTrigger.Conditions>
                             <Setter Property="IsEnabled" Value="true" />

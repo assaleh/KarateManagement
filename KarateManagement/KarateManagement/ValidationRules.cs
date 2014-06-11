@@ -30,7 +30,7 @@ namespace KarateManagement
             string input = value as string;
             bool valid = Regex.IsMatch(input, @"^[a-zA-z]{1}\d[a-zA-z]{1} *\d{1}[a-zA-z]{1}\d{1}$");
 
-            if (string.IsNullOrEmpty(input) || !valid)
+            if (!string.IsNullOrEmpty(input) && !valid)
             {
                 return new ValidationResult(false, "Invalid Postal Code");
             }
@@ -98,12 +98,34 @@ namespace KarateManagement
             string input = value as string;
             bool valid = Regex.IsMatch(input, @"^\d?\(?\d{3}\)?-?\d{3}-?\d{4}$");
 
-            if (string.IsNullOrEmpty(input) || !valid)
+            if (!string.IsNullOrEmpty(input) && !valid)
             {
                 return new ValidationResult(false, "Invalid Phone number");
             }
 
             return new ValidationResult(true, null);
+        }
+    }
+
+    public class DateValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            DateTime input = new DateTime();
+            bool isValid = false;
+            if (value != null)
+            {
+                input = (DateTime)value;
+                isValid = true;
+            }
+
+            // True if date is valid and is after Jan 1, 1900
+            if (isValid && input.CompareTo(new DateTime(1900, 1, 1)) > 0)
+            {
+                return new ValidationResult(true, null);
+
+            }
+            return new ValidationResult(false, "Invalid Date");
         }
     }
 }
