@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -36,37 +37,33 @@ namespace KarateManagement
             //Start a new task so that it runs on the Dispatcher thread instead of the UI thread
             var t = new Task(() =>
             {
-                SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;");
+                SqlHelper.Connect("Server=localhost;Uid=root;Pwd=;Convert Zero Datetime=True;");
+                AddExamples();
             });
             t.Start();
         }
 
         private void DeleteStudentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var t = new Task(() =>
+            StudentItem studentItem = StudentList.SelectedItem as StudentItem;
+
+            if (studentItem != null)
             {
-                Task<Student> task = SqlHelper.GetStudent(2);
-                Student s = task.Result;
-                MessageBox.Show(s.FirstName);
-
-            });
-            t.Start();
-
-            //SqlHelper.DeleteStudent(SqlHelper.GetHighestID().Result);
+                m_Students.Remove(studentItem);
+                SqlHelper.DeleteStudent(studentItem.ID);
+            }
         }
 
-        private void NewStudent_OnClick(object sender, RoutedEventArgs e)
+        private async void AddExamples()
         {
-            Student s = new Student();
-            s.ID = SqlHelper.GetHighestID().Result + 1;
-
-            //Task t = SqlHelper.CreateStudent(s);
-            //t.Wait();
-
-            EditStudent editStudent = new EditStudent();
-            bool? result = editStudent.ShowDialog();
-
-            MessageBox.Show(String.Format("Highest ID is now {0}", s.ID));
+            ArrayList array = await SqlHelper.GetAllStudents();
+            foreach (Student student in array)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    m_Students.Add(new StudentItem(student));
+                });
+            }
         }
 
         private void SetLanguageDictionary()
@@ -93,9 +90,9 @@ namespace KarateManagement
                 EditStudent editStudent = new EditStudent(studentItemCopy);
                 bool? result = editStudent.ShowDialog();
 
-                if (result.HasValue && !result.Value)
+                if (result.HasValue && result.Value)
                 {
-                    //m_Students[m_Students.IndexOf(studentItem)] = studentItemCopy;
+                    //TODO Call UpdateStudent
                     studentItem.CopyFields(studentItemCopy);
                 }
             }
@@ -118,7 +115,7 @@ namespace KarateManagement
 
         private void EditStudentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("Just double click on a student, N00b");
         }
 
         private void TestButton1_OnClick(object sender, RoutedEventArgs e)

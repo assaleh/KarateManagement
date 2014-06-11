@@ -133,7 +133,7 @@ namespace KarateManagement
         #region Constructor
         public StudentItem()
         {
-            ID = SqlHelper.GetHighestID().Result;
+            ID = SqlHelper.GetHighestID().Result + 1;
             DateOfBirth = DateTime.Now;
             MembershipEndDate = DateTime.Now;
         }

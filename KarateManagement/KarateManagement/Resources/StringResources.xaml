@@ -19,5 +19,6 @@
     <system:String x:Key="Belt">Belt</system:String>
     <system:String x:Key="Balance">Balance</system:String>
     <system:String x:Key="MembershipEndDate">Membership End Date</system:String>
+    <system:String x:Key="Cancel">Cancel</system:String>
     
 </ResourceDictionary>

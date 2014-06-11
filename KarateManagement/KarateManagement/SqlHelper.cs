@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -14,12 +15,13 @@ using MySql.Data.MySqlClient;
 namespace KarateManagement
 {
     /// <summary>
-    /// This class is used to Create and initialize the database, as well as any other maitanance functions
+    ///     This class is used to Create and initialize the database, as well as any other maitanance functions
     /// </summary>
     public static class SqlHelper
     {
         private static MySqlConnection m_connection;
-        async public static Task Connect(string connectionString)
+
+        public static async Task Connect(string connectionString)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -36,7 +38,6 @@ namespace KarateManagement
                 Console.WriteLine("State: {0}", connection.State);
                 Console.WriteLine("ConnectionString: {0}",
                     connection.ConnectionString);
-
 
 
                 string useDB = String.Format("Use karatemanagement;");
@@ -65,13 +66,12 @@ namespace KarateManagement
             {
                 await initializeDb;
             }
-
         }
 
         /// <summary>
-        /// This method should be called to create all the tables and use the table
+        ///     This method should be called to create all the tables and use the table
         /// </summary>
-        async private static Task InitializeDB()
+        private static async Task InitializeDB()
         {
             //Database doesnt exist. Must create database. Disconnect and try again
             try
@@ -92,14 +92,13 @@ namespace KarateManagement
             {
                 ErrorLogger.Logger.Write(e.ToString(), true);
             }
-
         }
 
         /// <summary>
-        /// Creates a Database called "KarateManagement"
+        ///     Creates a Database called "KarateManagement"
         /// </summary>
         /// <returns>An awaitable task that Creates a DB</returns>
-        async private static Task CreateDB()
+        private static async Task CreateDB()
         {
             try
             {
@@ -117,7 +116,7 @@ namespace KarateManagement
             }
         }
 
-        async private static Task CreateTable()
+        private static async Task CreateTable()
         {
             try
             {
@@ -135,15 +134,17 @@ namespace KarateManagement
         }
 
         /// <summary>
-        /// Creates a student in the database
+        ///     Creates a student in the database
         /// </summary>
         /// <param name="student">A student object to insert</param>
-        async public static Task CreateStudent(Student student)
+        public static async Task CreateStudent(Student student)
         {
             try
             {
-                string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName, student.LastName, student.DateOfBirth,
-                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt, student.Balance, student.MembershipEndDate);
+                string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName,
+                    student.LastName, student.DateOfBirth,
+                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt,
+                    student.Balance, student.MembershipEndDate);
                 MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
                 Task<int> t = cmd.ExecuteNonQueryAsync();
 
@@ -160,10 +161,10 @@ namespace KarateManagement
         }
 
         /// <summary>
-        /// Gets the Highest Student ID in the database
+        ///     Gets the Highest Student ID in the database
         /// </summary>
         /// <returns></returns>
-        async public static Task<int> GetHighestID()
+        public static async Task<int> GetHighestID()
         {
             string query = Resources.SelectMaxID;
             MySqlCommand cmd = new MySqlCommand(query, m_connection);
@@ -200,11 +201,11 @@ namespace KarateManagement
         }
 
         /// <summary>
-        /// Deletes a student from the database
+        ///     Deletes a student from the database
         /// </summary>
         /// <param name="id">ID of the student to delete</param>
         /// <returns>A task that can be awaited</returns>
-        async public static Task DeleteStudent(int id)
+        public static async Task DeleteStudent(int id)
         {
             String deleteStudent = String.Format(Resources.DeleteStudent, id);
             MySqlCommand cmd = new MySqlCommand(deleteStudent, m_connection);
@@ -225,11 +226,11 @@ namespace KarateManagement
         }
 
         /// <summary>
-        /// Gets a Student object from the database
+        ///     Gets a Student object from the database
         /// </summary>
         /// <param name="id">The ID of the student</param>
         /// <returns>A student object with all its fields populated</returns>
-        async public static Task<Student> GetStudent(int id)
+        public static async Task<Student> GetStudent(int id)
         {
             string script = String.Format("select * from student where id = {0}", id);
             MySqlCommand cmd = new MySqlCommand(script, m_connection);
@@ -271,6 +272,57 @@ namespace KarateManagement
             return s;
         }
 
+        /// <summary>
+        /// Gets all the students in the database
+        /// </summary>
+        /// <returns>An array of students</returns>
+        public static async Task<ArrayList> GetAllStudents()
+        {
+            string script = String.Format("select * from student;");
+            MySqlCommand cmd = new MySqlCommand(script, m_connection);
+            DbDataReader reader;
+            DataTable dt = new DataTable();
+
+            ArrayList array = new ArrayList();
+
+            try
+            {
+                reader = await cmd.ExecuteReaderAsync();
+
+                dt.Load(reader);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    Student s = new Student();
+
+                    s.ID = Convert.ToInt32(row["ID"].ToString());
+                    s.FirstName = row["FirstName"].ToString();
+                    s.LastName = row["LastName"].ToString();
+                    s.DateOfBirth = Convert.ToDateTime(row["DateOfBirth"]);
+                    s.Address = row["Address"].ToString();
+                    s.PhoneNumber = s.Address = row["PhoneNumber"].ToString();
+                    s.PostalCode = row["PostalCode"].ToString();
+                    s.Email = row["Email"].ToString();
+                    s.Hours = Convert.ToInt32(row["Hours"].ToString());
+                    s.Belt = (Belt)Convert.ToInt32(row["Belt"].ToString());
+                    s.Balance = Convert.ToDecimal(row["Balance"].ToString());
+                    s.MembershipEndDate = Convert.ToDateTime(row["MembershipEndDate"]);
+
+                    array.Add(s);
+                }
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), true);
+            }
+
+            return array;
+        }
+
 
         /*
          * async public static Task Update()
@@ -278,7 +330,5 @@ namespace KarateManagement
          * SELECT max(logins) + 1 
          * FROM mytable
          */
-
-
     }
 }

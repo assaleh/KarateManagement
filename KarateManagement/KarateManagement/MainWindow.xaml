@@ -1,24 +1,16 @@
 ﻿<Window x:Class="KarateManagement.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" FontSize="12">
+        Title="MainWindow" Height="350" Width="525" FontSize="14" SizeToContent="Width">
 
-    <Grid Name="WindowGrid">
+    <Grid Name="WindowGrid" Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
 
-
-        <Menu DockPanel.Dock="Top" Height="23" VerticalAlignment="Top" IsMainMenu="True" Grid.Row="0">
-            <MenuItem Header="{DynamicResource File}">
-                <MenuItem Header="{DynamicResource NewStudent}" Click="NewStudent_OnClick"></MenuItem>
-            </MenuItem>
-        </Menu>
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Name="NewStudentButton" Click="NewStudentButton_OnClick" Width="70" Height="30" Content="{DynamicResource NewStudent}"/>
             <Button Name="EditStudentButton" Click="EditStudentButton_OnClick" Width="50" Height="30">Edit</Button>
             <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="50" Height="30">Delete</Button>
@@ -30,11 +22,52 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="2" VerticalAlignment="Stretch" Name="StudentList" MouseDoubleClick="StudentList_OnMouseDoubleClick">
+        <ListView Grid.Row="1" VerticalAlignment="Stretch" Name="StudentList" MouseDoubleClick="StudentList_OnMouseDoubleClick" HorizontalContentAlignment="Stretch">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="30" DisplayMemberBinding="{Binding StudentItem.ID}">
-                        <GridViewColumnHeader Content="ID"></GridViewColumnHeader>
+                <GridView >
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style>
+                            <Setter Property="TextElement.FontSize" Value="14" />
+                            <Setter Property="TextElement.FontWeight" Value="Bold" />
+                        </Style>
+
+                    </GridView.ColumnHeaderContainerStyle>
+
+                    <GridViewColumn Width="30" DisplayMemberBinding="{Binding ID}">
+                        <GridViewColumnHeader Content="#"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding FirstName}">
+                        <GridViewColumnHeader Content="{DynamicResource FirstName}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding LastName}">
+                        <GridViewColumnHeader Content="{DynamicResource LastName}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding DateOfBirth}">
+                        <GridViewColumnHeader Content="{DynamicResource DateOfBirth}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Address}">
+                        <GridViewColumnHeader Content="{DynamicResource Address}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding PostalCode}">
+                        <GridViewColumnHeader Content="{DynamicResource PostalCode}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding PhoneNumber}">
+                        <GridViewColumnHeader Content="{DynamicResource PhoneNumber}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Email}">
+                        <GridViewColumnHeader Content="{DynamicResource Email}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Hours}">
+                        <GridViewColumnHeader Content="{DynamicResource Hours}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Belt}">
+                        <GridViewColumnHeader Content="{DynamicResource Belt}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Balance}">
+                        <GridViewColumnHeader Content="{DynamicResource Balance}"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding MembershipEndDate}">
+                        <GridViewColumnHeader Content="{DynamicResource MembershipEndDate}"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

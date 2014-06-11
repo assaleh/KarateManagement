@@ -1,9 +1,10 @@
 ﻿<Window x:Class="KarateManagement.EditStudent"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="EditStudent" Height="400" Width="400" FontSize="12" x:Name="ctl">
+        xmlns:karateManagement="clr-namespace:KarateManagement"
+        Title="EditStudent" Height="500" Width="420" FontSize="14" x:Name="ctl" SizeToContent="Height">
 
-    <Grid Name="DataGrid">
+    <Grid Name="DataGrid" Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,7 +25,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0"  Grid.Column="0" Content= "{DynamicResource ID}" />
+        <Label Grid.Row="0"  Grid.Column="0" Content= "{DynamicResource ID}"/>
         <Label Grid.Row="1"  Grid.Column="0" Content= "{DynamicResource FirstName}" />
         <Label Grid.Row="2"  Grid.Column="0" Content= "{DynamicResource LastName}" />
         <Label Grid.Row="3"  Grid.Column="0" Content= "{DynamicResource DateOfBirth}" />
@@ -37,34 +38,108 @@
         <Label Grid.Row="10" Grid.Column="0" Content= "{DynamicResource Balance}" />
         <Label Grid.Row="11" Grid.Column="0" Content= "{DynamicResource MembershipEndDate}" />
 
-        <Label   Name="ID_Label"            Grid.Row="0" Grid.Column="1" Content ="{Binding ID}"/>
+        <Label Name="ID_Label" Grid.Row="0" Grid.Column="1" Content ="{Binding ID}" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="25,5,10,5"/>
 
-        <TextBox Name="FirstName_TextBox"   Grid.Row="1" Grid.Column="1" Text ="{Binding FirstName}"/>
+        <TextBox Name="FirstName_TextBox" Margin="25,5,10,5" Grid.Row="1" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:NameValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <TextBox Name="LastName_TextBox"    Grid.Row="2" Grid.Column="1" Text ="{Binding LastName}"/>
+        <TextBox Name="LastName_TextBox" Margin="25,5,10,5" Grid.Row="2" Grid.Column="1" Text ="{Binding LastName}"/>
 
-        <DatePicker Name="DOB_DatePicker"   Grid.Row="3" Grid.Column="1" SelectedDate="{Binding DateOfBirth}"/>
+        <DatePicker Name="DOB_DatePicker" Margin="25,5,10,5" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding DateOfBirth}"/>
 
-        <TextBox Name="Address_TextBox"     Grid.Row="4" Grid.Column="1" Text ="{Binding Address}"/>
+        <TextBox Name="Address_TextBox" Margin="25,5,10,5" Grid.Row="4" Grid.Column="1" Text ="{Binding Address}"/>
 
-        <TextBox Name="PostalCode_TextBox"  Grid.Row="5" Grid.Column="1" Text ="{Binding PostalCode}"/>
+        <TextBox Name="PostalCode_TextBox" Margin="25,5,10,5" Grid.Row="5" Grid.Column="1" MaxLength="7" Width="75">
+            <TextBox.Text>
+                <Binding Path="PostalCode" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:PostalCodeValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <TextBox Name="PhoneNumber_TextBox" Grid.Row="6" Grid.Column="1" Text ="{Binding PhoneNumber}"/>
+        <TextBox Name="PhoneNumber_TextBox" Margin="25,5,10,5" Grid.Row="6" Grid.Column="1" Width="130" MaxLength="15">
+            <TextBox.Text>
+                <Binding Path="PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:PhoneNumberValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <TextBox Name="Email_TextBox"       Grid.Row="7" Grid.Column="1" Text ="{Binding Email}"/>
+        <TextBox Name="Email_TextBox" Grid.Row="7" Grid.Column="1" Margin="25,5,10,5">
+            <TextBox.Text>
+                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:EmailValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <TextBox Name="Hours_TextBox" Grid.Row="8" Grid.Column="1" Text ="{Binding Hours}"/>
+        <TextBox Name="Hours_TextBox" Grid.Row="8" Grid.Column="1" MaxLength="5" Width="70" Margin="25,5,10,5">
+            <TextBox.Text>
+                <Binding Path="Hours" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:HoursValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <ComboBox Name="Belt_ComboBox" Grid.Row="9" Grid.Column="1" ItemsSource ="{Binding Belts, ElementName=ctl}"
-                  SelectedValue="{Binding Belt}"/>
+        <ComboBox Name="Belt_ComboBox" Grid.Row="9" Grid.Column="1" ItemsSource ="{Binding Belts, ElementName=ctl}" SelectedValue="{Binding Belt}" Margin="25,5,10,5"/>
 
-        <TextBox Name="Balance_TextBox"     Grid.Row="10" Grid.Column="1" Text ="{Binding Balance}"/>
+        <TextBox Name="Balance_TextBox" Grid.Row="10" Grid.Column="1" MaxLength="10" Width="100" TextAlignment="Right">
+            <TextBox.Text>
+                <Binding Path="Balance" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <karateManagement:BalanceValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
-        <DatePicker Name="MembershipEndDate_DatePicker" Grid.Row="11" Grid.Column="1"  SelectedDate="{Binding MembershipEndDate}"/>
+        <DatePicker Name="MembershipEndDate_DatePicker" Grid.Row="11" Grid.Column="1"  SelectedDate="{Binding MembershipEndDate}" Margin="25,5,10,5"/>
 
-        <Button Name="OK_Button" Content="OK" Grid.Row="12" Grid.Column="0"
-                Margin="10" Width="50" Click="OK_Button_OnClick"></Button>
-        <Button Name="Cancel_Button" Content="Cancel" Grid.Row="12" Grid.Column="1"
-                Margin="10" Width="50" Click="Cancel_Button_OnClick"></Button>
+        <Button Name="OK_Button" IsDefault="True" Content="OK" Grid.Row="12" Grid.Column="0"
+                Margin="30,20,30,20" Height="30" Width="50" Click="OK_Button_OnClick" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=FirstName_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=LastName_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=Address_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=PostalCode_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=PhoneNumber_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=Email_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=Hours_TextBox, Path=(Validation.HasError)}" Value="false" />
+                                <Condition Binding="{Binding ElementName=Balance_TextBox, Path=(Validation.HasError)}" Value="false" />
+
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="true" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+
+
+
+        </Button>
+
+
+
+        <Button Name="Cancel_Button" IsCancel="True" Content="{DynamicResource Cancel}" Grid.Row="12" Grid.Column="1" Margin="30,20,30,20" Height="30" Width="50" Click="Cancel_Button_OnClick" HorizontalAlignment="Left"/>
     </Grid>
 </Window>

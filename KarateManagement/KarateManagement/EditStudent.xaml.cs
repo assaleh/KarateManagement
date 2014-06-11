@@ -32,11 +32,11 @@ namespace KarateManagement
 
         public EditStudent()
         {
-            InitializeComponent();
-
             SetLanguageDictionary();
+
             Belts = new ObservableCollection<Belt>(new[] { Belt.White, Belt.Orange, Belt.Blue, Belt.Yellow, Belt.Green, Belt.Brown, Belt.Black, Belt.Nidan, Belt.Sandan });
 
+            InitializeComponent();
         }
 
         public EditStudent(StudentItem studentItem)

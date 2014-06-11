@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 
 
-
 namespace KarateManagement
 {
     /// <summary>
@@ -28,7 +27,7 @@ namespace KarateManagement
         private ErrorLogger()
         {
         }
-        
+
         public static ErrorLogger Logger
         {
             get
@@ -50,10 +49,10 @@ namespace KarateManagement
         {
             if (showMessageBox || ShowErrors)
                 MessageBox.Show(error);
-            
-            string fileName = String.Format("ErrorLog_{0}-{1}-{2}.log", DateTime.Now.Year, DateTime.Now.Month, 
-                DateTime.Now.Day); 
-            
+
+            string fileName = String.Format("ErrorLog_{0}-{1}-{2}.log", DateTime.Now.Year, DateTime.Now.Month,
+                DateTime.Now.Day);
+
             using (StreamWriter file = new StreamWriter(fileName, true))
             {
                 String formatedError = String.Format(

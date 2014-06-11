@@ -65,6 +65,7 @@
     <Compile Include="SqlHelper.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentItem.cs" />
+    <Compile Include="ValidationRules.cs" />
     <Page Include="EditStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
