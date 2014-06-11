@@ -1,0 +1,1 @@
+﻿Select * From Student where MembershipEndDate < current_timestamp;

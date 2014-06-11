@@ -323,7 +323,32 @@ namespace KarateManagement
             return array;
         }
 
+        /// <summary>
+        ///     Updates a student in the database
+        /// </summary>
+        /// <param name="student">A student object to update</param>
+        public static async Task UpdateStudent(Student student)
+        {
+            try
+            {
+                string updateStudent = String.Format(Resources.UpdateStudent, student.ID, student.FirstName,
+                    student.LastName, student.DateOfBirth,
+                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt,
+                    student.Balance, student.MembershipEndDate);
+                MySqlCommand cmd = new MySqlCommand(updateStudent, m_connection);
+                Task<int> t = cmd.ExecuteNonQueryAsync();
 
+                await t;
+            }
+            catch (DbException e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), false);
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.Logger.Write(e.ToString(), true);
+            }
+        }
         /*
          * async public static Task Update()
          * INSERT into mytable (logins) 

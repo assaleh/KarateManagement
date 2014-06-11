@@ -130,14 +130,23 @@
   <data name="DeleteStudent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\scripts\deletestudent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="MembershipExpired" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scripts\membershipexpired.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="SelectMaxID" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\scripts\selectmaxid.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SelectStudentWithID" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scripts\selectstudentwithid.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="StringResources" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\stringresources.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="StringResources_fr_CA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\stringresources.fr-ca.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="StudentBirthday" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scripts\studentbirthday.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="UpdateStudent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\scripts\updatestudent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

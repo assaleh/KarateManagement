@@ -98,9 +98,9 @@ namespace KarateManagement
                 {
                     //TODO Call UpdateStudent
                     studentItem.CopyFields(studentItemCopy);
+                    SqlHelper.UpdateStudent(studentItem.ToStudent());
                 }
             }
-
         }
 
         private void NewStudentButton_OnClick(object sender, RoutedEventArgs e)

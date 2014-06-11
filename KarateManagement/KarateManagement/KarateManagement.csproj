@@ -120,10 +120,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Scripts\SelectStudentWithID.SQL" />
     <Content Include="Scripts\CreateDB.SQL" />
     <Content Include="Scripts\CreateStudent.SQL" />
     <Content Include="Scripts\DeleteStudent.SQL" />
+    <Content Include="Scripts\MembershipExpired.SQL" />
+    <Content Include="Scripts\StudentBirthday.SQL" />
     <Content Include="Scripts\SelectMaxID.SQL" />
+    <Content Include="Scripts\UpdateStudent.SQL" />
     <Resource Include="Scripts\CreateTable.SQL" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

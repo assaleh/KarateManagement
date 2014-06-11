@@ -112,6 +112,15 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select * From Student where MembershipEndDate &lt; current_timestamp;.
+        /// </summary>
+        internal static string MembershipExpired {
+            get {
+                return ResourceManager.GetString("MembershipExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select MAX(ID) as ID from Student;.
         /// </summary>
         internal static string SelectMaxID {
@@ -121,14 +130,28 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select * 
+        ///From student 
+        ///Where id = {0};.
+        /// </summary>
+        internal static string SelectStudentWithID {
+            get {
+                return ResourceManager.GetString("SelectStudentWithID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;ResourceDictionary xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
         ///                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
         ///                    xmlns:system=&quot;clr-namespace:System;assembly=mscorlib&quot;&gt;
         ///
+        ///    &lt;!-- File Menu--&gt;
         ///    &lt;system:String x:Key=&quot;File&quot;&gt;File&lt;/system:String&gt;
         ///    &lt;system:String x:Key=&quot;NewStudent&quot;&gt;New Student&lt;/system:String&gt;
-        ///    
-        ///&lt;/ResourceDictionary&gt;.
+        ///
+        ///    &lt;!-- Edit Student--&gt;
+        ///    &lt;system:String x:Key=&quot;ID&quot;&gt;ID&lt;/system:String&gt;
+        ///    &lt;system:String x:Key=&quot;FirstName&quot;&gt;First Name&lt;/ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StringResources {
             get {
@@ -141,10 +164,13 @@ namespace KarateManagement.Properties {
         ///                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
         ///                    xmlns:system=&quot;clr-namespace:System;assembly=mscorlib&quot;&gt;
         ///
+        ///    &lt;!--File Menu--&gt;
         ///    &lt;system:String x:Key=&quot;File&quot;&gt;Fichier&lt;/system:String&gt;
         ///    &lt;system:String x:Key=&quot;NewStudent&quot;&gt;Nouveau Etudiant&lt;/system:String&gt;
         ///    
-        ///&lt;/ResourceDictionary&gt;.
+        ///    &lt;!--Edit Student--&gt;
+        ///    &lt;system:String x:Key=&quot;ID&quot;&gt;Numéro d&apos;identification&lt;/system:String&gt;
+        ///    &lt;system:String [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StringResources_fr_CA {
             get {
@@ -153,7 +179,22 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE `karatemanagement`.`student` SET `LastName` = &apos;farhat&apos;, `DateOfBirth` = &apos;2001-07-10 12:00:00&apos;, `Address` = &apos;123 dfgfdg&apos;, `PostalCode` = &apos;dfgd&apos;, `PhoneNumber` = &apos;234324&apos;, `Email` = &apos;wsefsdf@gay.com&apos;, `Hours` = &apos;3&apos;, `Belt` = &apos;1&apos;, `Balance` = &apos;350.256&apos;, `MembershipEndDate` = &apos;2011-01-18 12:00:00&apos; WHERE `student`.`ID` = 2;.
+        ///   Looks up a localized string similar to SELECT * 
+        ///FROM  Student
+        ///WHERE  DATE_ADD(DateOfBirth, INTERVAL YEAR(CURDATE())-YEAR(DateOfBirth) YEAR) 
+        ///            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY);.
+        /// </summary>
+        internal static string StudentBirthday {
+            get {
+                return ResourceManager.GetString("StudentBirthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE `karatemanagement`.`student` 
+        ///SET `FirstName` = &apos;{1}&apos;,`LastName` = &apos;{2}&apos;, `DateOfBirth` = &apos;{3}&apos;,`Address` = &apos;{4}&apos;, `PostalCode` = &apos;{5}&apos;, 
+        ///	`PhoneNumber` = &apos;{6}&apos;, `Email` = &apos;{7}&apos;, `Hours` = &apos;{8}&apos;, `Belt` = &apos;{9}&apos;, `Balance` = &apos;{10}&apos;, `MembershipEndDate` = &apos;{11}&apos; 
+        ///WHERE `student`.`ID` = {0};.
         /// </summary>
         internal static string UpdateStudent {
             get {
