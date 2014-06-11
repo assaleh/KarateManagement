@@ -278,7 +278,17 @@ namespace KarateManagement
         /// <returns>An array of students</returns>
         public static async Task<ArrayList> GetAllStudents()
         {
-            string script = String.Format("select * from student;");
+            return await GetStudents(Resources.GetAllStudents);
+        }
+
+
+        /// <summary>
+        /// Gets students in the database based on the script
+        /// </summary>
+        /// <param name="script">The SQL script used to get students</param>
+        /// <returns>An array of students</returns>
+        public static async Task<ArrayList> GetStudents(String script)
+        {
             MySqlCommand cmd = new MySqlCommand(script, m_connection);
             DbDataReader reader;
             DataTable dt = new DataTable();

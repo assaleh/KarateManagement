@@ -44,7 +44,7 @@ namespace KarateManagement
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string input = value as string;
-            bool valid = Regex.IsMatch(input, @"^\w+@\w+.\w+$");
+            bool valid = Regex.IsMatch(input, @"^.+@.+\..+$");
 
             if (!string.IsNullOrEmpty(input) && !valid)
             {

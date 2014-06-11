@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Scripts\GetAllStudents.SQL" />
     <Content Include="Scripts\SelectStudentWithID.SQL" />
     <Content Include="Scripts\CreateDB.SQL" />
     <Content Include="Scripts\CreateStudent.SQL" />

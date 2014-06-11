@@ -130,6 +130,9 @@
   <data name="DeleteStudent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\scripts\deletestudent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="GetAllStudents" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\scripts\getallstudents.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="MembershipExpired" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\scripts\membershipexpired.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

@@ -112,6 +112,15 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * from Student;.
+        /// </summary>
+        internal static string GetAllStudents {
+            get {
+                return ResourceManager.GetString("GetAllStudents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select * From Student where MembershipEndDate &lt; current_timestamp;.
         /// </summary>
         internal static string MembershipExpired {
@@ -148,10 +157,10 @@ namespace KarateManagement.Properties {
         ///    &lt;!-- File Menu--&gt;
         ///    &lt;system:String x:Key=&quot;File&quot;&gt;File&lt;/system:String&gt;
         ///    &lt;system:String x:Key=&quot;NewStudent&quot;&gt;New Student&lt;/system:String&gt;
+        ///    &lt;system:String x:Key=&quot;Search&quot;&gt;Search&lt;/system:String&gt;
         ///
         ///    &lt;!-- Edit Student--&gt;
-        ///    &lt;system:String x:Key=&quot;ID&quot;&gt;ID&lt;/system:String&gt;
-        ///    &lt;system:String x:Key=&quot;FirstName&quot;&gt;First Name&lt;/ [rest of string was truncated]&quot;;.
+        ///    &lt;system:String x:Key=&quot;ID&quot;&gt;ID&lt;/system: [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StringResources {
             get {
@@ -167,10 +176,10 @@ namespace KarateManagement.Properties {
         ///    &lt;!--File Menu--&gt;
         ///    &lt;system:String x:Key=&quot;File&quot;&gt;Fichier&lt;/system:String&gt;
         ///    &lt;system:String x:Key=&quot;NewStudent&quot;&gt;Nouveau Etudiant&lt;/system:String&gt;
-        ///    
+        ///    &lt;system:String x:Key=&quot;Search&quot;&gt;Recherche&lt;/system:String&gt;
+        ///
         ///    &lt;!--Edit Student--&gt;
-        ///    &lt;system:String x:Key=&quot;ID&quot;&gt;Numéro d&apos;identification&lt;/system:String&gt;
-        ///    &lt;system:String [rest of string was truncated]&quot;;.
+        ///    &lt;system:String x:Key=&quot;ID&quot;&gt;Nu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StringResources_fr_CA {
             get {
@@ -191,7 +200,7 @@ namespace KarateManagement.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE `karatemanagement`.`student` 
+        ///   Looks up a localized string similar to   UPDATE `karatemanagement`.`student` 
         ///SET `FirstName` = &apos;{1}&apos;,`LastName` = &apos;{2}&apos;, `DateOfBirth` = &apos;{3}&apos;,`Address` = &apos;{4}&apos;, `PostalCode` = &apos;{5}&apos;, 
         ///	`PhoneNumber` = &apos;{6}&apos;, `Email` = &apos;{7}&apos;, `Hours` = &apos;{8}&apos;, `Belt` = &apos;{9}&apos;, `Balance` = &apos;{10}&apos;, `MembershipEndDate` = &apos;{11}&apos; 
         ///WHERE `student`.`ID` = {0};.
