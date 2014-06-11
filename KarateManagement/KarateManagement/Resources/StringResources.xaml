@@ -5,6 +5,7 @@
     <!-- File Menu-->
     <system:String x:Key="File">File</system:String>
     <system:String x:Key="NewStudent">New Student</system:String>
+    <system:String x:Key="Search">Search</system:String>
 
     <!-- Edit Student-->
     <system:String x:Key="ID">ID</system:String>
@@ -20,5 +21,5 @@
     <system:String x:Key="Balance">Balance</system:String>
     <system:String x:Key="MembershipEndDate">Membership End Date</system:String>
     <system:String x:Key="Cancel">Cancel</system:String>
-    
+
 </ResourceDictionary>

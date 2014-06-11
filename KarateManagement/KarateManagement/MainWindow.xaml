@@ -11,7 +11,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Name="NewStudentButton" Click="NewStudentButton_OnClick" Width="70" Height="30" Content="{DynamicResource NewStudent}"/>
+            <Button Name="NewStudentButton" Click="NewStudentButton_OnClick" Width="70" Height="30" Content="New"/>
             <Button Name="EditStudentButton" Click="EditStudentButton_OnClick" Width="50" Height="30">Edit</Button>
             <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="50" Height="30">Delete</Button>
             <Button Name="TestButton1" Click="TestButton1_OnClick" Height="30" Width="50">Test 1</Button>
@@ -34,40 +34,51 @@
                     </GridView.ColumnHeaderContainerStyle>
 
                     <GridViewColumn Width="30" DisplayMemberBinding="{Binding ID}">
-                        <GridViewColumnHeader Content="#"/>
+                        <GridViewColumnHeader Content="#" Click="GridViewColumnHeader_Click" Tag="ID"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding FirstName}">
-                        <GridViewColumnHeader Content="{DynamicResource FirstName}"/>
+                        <GridViewColumnHeader Content="{DynamicResource FirstName}" 
+                                              Click="GridViewColumnHeader_Click" Tag="FirstName"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding LastName}">
-                        <GridViewColumnHeader Content="{DynamicResource LastName}"/>
+                        <GridViewColumnHeader Content="{DynamicResource LastName}" 
+                                              Click="GridViewColumnHeader_Click" Tag="LastName"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding DateOfBirth}">
-                        <GridViewColumnHeader Content="{DynamicResource DateOfBirth}"/>
+                        <GridViewColumnHeader Content="{DynamicResource DateOfBirth}" 
+                                              Click="GridViewColumnHeader_Click" Tag="DateOfBirth"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Address}">
-                        <GridViewColumnHeader Content="{DynamicResource Address}"/>
+                        <GridViewColumnHeader Content="{DynamicResource Address}"
+                                               Click="GridViewColumnHeader_Click" Tag="Address"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding PostalCode}">
-                        <GridViewColumnHeader Content="{DynamicResource PostalCode}"/>
+                        <GridViewColumnHeader Content="{DynamicResource PostalCode}"
+                                               Click="GridViewColumnHeader_Click" Tag="PostalCode"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding PhoneNumber}">
-                        <GridViewColumnHeader Content="{DynamicResource PhoneNumber}"/>
+                        <GridViewColumnHeader Content="{DynamicResource PhoneNumber}"
+                                               Click="GridViewColumnHeader_Click" Tag="PhoneNumber"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Email}">
-                        <GridViewColumnHeader Content="{DynamicResource Email}"/>
+                        <GridViewColumnHeader Content="{DynamicResource Email}"
+                                               Click="GridViewColumnHeader_Click" Tag="Email"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Hours}">
-                        <GridViewColumnHeader Content="{DynamicResource Hours}"/>
+                        <GridViewColumnHeader Content="{DynamicResource Hours}"
+                                               Click="GridViewColumnHeader_Click" Tag="Hours"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Belt}">
-                        <GridViewColumnHeader Content="{DynamicResource Belt}"/>
+                        <GridViewColumnHeader Content="{DynamicResource Belt}"
+                                               Click="GridViewColumnHeader_Click" Tag="Belt"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Balance}">
-                        <GridViewColumnHeader Content="{DynamicResource Balance}"/>
+                        <GridViewColumnHeader Content="{DynamicResource Balance}"
+                                               Click="GridViewColumnHeader_Click" Tag="Balance"/>
                     </GridViewColumn>
                     <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding MembershipEndDate}">
-                        <GridViewColumnHeader Content="{DynamicResource MembershipEndDate}"/>
+                        <GridViewColumnHeader Content="{DynamicResource MembershipEndDate}"
+                                               Click="GridViewColumnHeader_Click" Tag="MembershipEndDate"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

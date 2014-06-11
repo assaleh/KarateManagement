@@ -5,6 +5,7 @@
     <!--File Menu-->
     <system:String x:Key="File">Fichier</system:String>
     <system:String x:Key="NewStudent">Nouveau Etudiant</system:String>
+    <system:String x:Key="Search">Recherche</system:String>
 
     <!--Edit Student-->
     <system:String x:Key="ID">Numéro d'identification</system:String>
