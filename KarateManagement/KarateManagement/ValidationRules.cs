@@ -82,7 +82,7 @@ namespace KarateManagement
             bool isNumber = Decimal.TryParse(input, out result);
 
 
-            if (isNumber && result >= 0)
+            if (isNumber)
             {
                 return new ValidationResult(true, null);
             }

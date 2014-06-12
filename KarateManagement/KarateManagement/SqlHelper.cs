@@ -143,7 +143,7 @@ namespace KarateManagement
             {
                 string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName,
                     student.LastName, student.DateOfBirth.ToString("yy-MM-dd"),
-                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt,
+                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, (int)student.Belt,
                     student.Balance, student.MembershipEndDate.ToString("yy-MM-dd"));
                 MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
                 Task<int> t = cmd.ExecuteNonQueryAsync();
@@ -161,7 +161,7 @@ namespace KarateManagement
         }
 
         /// <summary>
-        ///     Gets the Highest Student ID in the database
+        /// Gets the Highest Student ID in the database
         /// </summary>
         /// <returns></returns>
         public static async Task<int> GetHighestID()
@@ -201,7 +201,7 @@ namespace KarateManagement
         }
 
         /// <summary>
-        ///     Deletes a student from the database
+        /// Deletes a student from the database
         /// </summary>
         /// <param name="id">ID of the student to delete</param>
         /// <returns>A task that can be awaited</returns>
@@ -226,7 +226,7 @@ namespace KarateManagement
         }
 
         /// <summary>
-        ///     Gets a Student object from the database
+        /// Gets a Student object from the database
         /// </summary>
         /// <param name="id">The ID of the student</param>
         /// <returns>A student object with all its fields populated</returns>
@@ -334,7 +334,7 @@ namespace KarateManagement
         }
 
         /// <summary>
-        ///     Updates a student in the database
+        /// Updates a student in the database
         /// </summary>
         /// <param name="student">A student object to update</param>
         public static async Task UpdateStudent(Student student)
@@ -342,9 +342,9 @@ namespace KarateManagement
             try
             {
                 string updateStudent = String.Format(Resources.UpdateStudent, student.ID, student.FirstName,
-                    student.LastName, student.DateOfBirth,
-                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt,
-                    student.Balance, student.MembershipEndDate);
+                    student.LastName, student.DateOfBirth.ToString("yy-MM-dd"),
+                    student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, (int)student.Belt,
+                    student.Balance, student.MembershipEndDate.ToString("yy-MM-dd"));
                 MySqlCommand cmd = new MySqlCommand(updateStudent, m_connection);
                 Task<int> t = cmd.ExecuteNonQueryAsync();
 
@@ -359,11 +359,6 @@ namespace KarateManagement
                 ErrorLogger.Logger.Write(e.ToString(), true);
             }
         }
-        /*
-         * async public static Task Update()
-         * INSERT into mytable (logins) 
-         * SELECT max(logins) + 1 
-         * FROM mytable
-         */
+
     }
 }
