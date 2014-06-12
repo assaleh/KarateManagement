@@ -142,9 +142,9 @@ namespace KarateManagement
             try
             {
                 string createStudent = String.Format(Resources.CreateStudent, student.ID, student.FirstName,
-                    student.LastName, student.DateOfBirth,
+                    student.LastName, student.DateOfBirth.ToString("yy-MM-dd"),
                     student.Address, student.PostalCode, student.PhoneNumber, student.Email, student.Hours, student.Belt,
-                    student.Balance, student.MembershipEndDate);
+                    student.Balance, student.MembershipEndDate.ToString("yy-MM-dd"));
                 MySqlCommand cmd = new MySqlCommand(createStudent, m_connection);
                 Task<int> t = cmd.ExecuteNonQueryAsync();
 
