@@ -14,9 +14,9 @@
             <Button Name="NewStudentButton" Click="NewStudentButton_OnClick" Width="70" Height="30" Content="New"/>
             <Button Name="EditStudentButton" Click="EditStudentButton_OnClick" Width="50" Height="30">Edit</Button>
             <Button Name="DeleteStudentButton" Click="DeleteStudentButton_OnClick" Width="50" Height="30">Delete</Button>
-            <Button Name="TestButton1" Click="TestButton1_OnClick" Height="30" Width="50">Test 1</Button>
-            <Button Name="TestButton2" Click="TestButton2_OnClick" Height="30" Width="50">Test 2</Button>
-            <Button Name="TestButton3" Click="TestButton3_OnClick" Height="30" Width="50">Test 3</Button>
+            <Button Name="TestButton1" Click="TestButton1_OnClick" Height="30" Width="50">Birthdays</Button>
+            <Button Name="TestButton2" Click="TestButton2_OnClick" Height="30" Width="50">Expired</Button>
+            <Button Name="TestButton3" Click="TestButton3_OnClick" Height="30" Width="50">Balance</Button>
 
 
         </StackPanel>

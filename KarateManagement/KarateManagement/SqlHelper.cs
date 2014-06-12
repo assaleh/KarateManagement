@@ -360,5 +360,13 @@ namespace KarateManagement
             }
         }
 
+        public static async Task<ArrayList> GetBirthday(int dayInterval)//TODO: change birthday script to accept different day intervals
+        {
+           return await GetStudents(Resources.StudentBirthday);
+        }
+        public static async Task<ArrayList> GetExpiredStudents()//TODO: fix interval for expired student mySQL script
+        {
+            return await GetStudents(Resources.MembershipExpired);
+        }
     }
 }

@@ -124,17 +124,65 @@ namespace KarateManagement
 
         private void TestButton1_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            GetBirthdayStudents();
+        }
+
+        private async void GetBirthdayStudents()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                m_Students.Clear();
+            });
+            ArrayList array = await SqlHelper.GetBirthday(1);
+            foreach (Student student in array)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    m_Students.Add(new StudentItem(student));
+                });
+            }
+        }
+
+        private async void GetExpiredMembers()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                m_Students.Clear();
+            });
+            ArrayList array = await SqlHelper.GetExpiredStudents();
+            foreach (Student student in array)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    m_Students.Add(new StudentItem(student));
+                });
+            }
+        }
+
+        private async void GetBalance()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                m_Students.Clear();
+            });
+            ArrayList array = await SqlHelper.GetBalance();
+            foreach (Student student in array)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    m_Students.Add(new StudentItem(student));
+                });
+            }
         }
 
         private void TestButton2_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            GetExpiredMembers();
         }
 
         private void TestButton3_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            GetBalance();
         }
 
         private void Sort(string sortBy, ListSortDirection direction)

@@ -85,7 +85,7 @@ namespace KarateManagement.Properties {
         ///	ID INT PRIMARY KEY,
         ///	FirstName varchar(20),
         ///	LastName varchar(20),
-        ///	DateOfBirth datetime,
+        ///	DateOfBirth date,
         ///	Address varchar(100),
         ///	PostalCode char(6),
         ///	PhoneNumber varchar(10),
@@ -93,7 +93,7 @@ namespace KarateManagement.Properties {
         ///	Hours int,
         ///	Belt int,
         ///	Balance decimal(10,2),
-        ///	MembershipEndDate datetime
+        ///	MembershipEndDate date
         ///);.
         /// </summary>
         internal static string CreateTable {
@@ -184,6 +184,17 @@ namespace KarateManagement.Properties {
         internal static string StringResources_fr_CA {
             get {
                 return ResourceManager.GetString("StringResources_fr_CA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT *
+        ///FROM Student
+        ///WHERE Balance &lt;&gt; 0;.
+        /// </summary>
+        internal static string StudentBalance {
+            get {
+                return ResourceManager.GetString("StudentBalance", resourceCulture);
             }
         }
         
