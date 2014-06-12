@@ -360,13 +360,32 @@ namespace KarateManagement
             }
         }
 
+        /// <summary>
+        /// Queries database for students whos birthdays are within a week
+        /// </summary>
+        /// <param name="dayInterval">(NOT YET IMPLEMENTED) the interval to look for</param>
+        /// <returns></returns>
         public static async Task<ArrayList> GetBirthday(int dayInterval)//TODO: change birthday script to accept different day intervals
         {
            return await GetStudents(Resources.StudentBirthday);
         }
+
+        /// <summary>
+        /// Queries database for students with expired memberships
+        /// </summary>
+        /// <returns></returns>
         public static async Task<ArrayList> GetExpiredStudents()//TODO: fix interval for expired student mySQL script
         {
             return await GetStudents(Resources.MembershipExpired);
+        }
+
+        /// <summary>
+        /// Queries database for students with balances that are not equal to 0
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<ArrayList> GetBalance()//TODO: fix interval for expired student mySQL script
+        {
+            return await GetStudents(Resources.StudentBalance);
         }
     }
 }
